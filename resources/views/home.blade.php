@@ -14,9 +14,7 @@
                     <br>
                     <a href="home/reg_1"> Generation Of IM Number</a>
                     <br><br>
-                    <a href="">Application for submitting the claim for subsidy after installation of Attachments
-                    </a>
-                    <br>   
+                 
                     
                     <hr>
                     

@@ -74,7 +74,7 @@ Navi Mumbai </center></label>
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
+                  
                 </a>
             </div>
 

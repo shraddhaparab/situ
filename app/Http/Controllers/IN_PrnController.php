@@ -64,11 +64,22 @@ class IN_PrnController extends Controller
   }
     
  
-    public function in2(Request $request,$im_no)
+    public function in2(Request $request,$im_no,$im_prems)
     {
         $mst_im1 = new Mst_im_reg;
         $mst_im1->im_no = Input::get('im_no');
-        //echo $im_no;
+        $mst_im1->im_prems = Input::get('im_prems');
+        echo $im_no;  
+        echo $im_prems;
+        
+        $mst_im_reg3 = DB::table('mst_im_regs')
+           ->join('users', 'mst_im_regs.user_id', '=', 'users.id')
+             ->where('im_no' ,$im_no)
+             ->update(['im_prems' => $im_prems]);  
+         
+        //return view("home");
+         
+            
         
         $mst_im_reg = DB::table('mst_im_regs')
              ->join('users', 'mst_im_regs.user_id', '=', 'users.id')
@@ -76,7 +87,7 @@ class IN_PrnController extends Controller
              ->where('im_no' ,$im_no)     
             ->get();
          
-      return view('IN_2')->with(['mst_im_reg' => $mst_im_reg]);
+      return view('IN_2')->with(['mst_im_reg' => $mst_im_reg]); 
        }
 
     public function in3()
@@ -124,9 +135,44 @@ class IN_PrnController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$im_no)
     {
-        //
+       $this->validate($request, [
+    'im_bank_name' => 'required',
+    'im_bank_branch' => 'required',
+    'im__bank_add' => 'required',
+    'im_bank_pin' => 'required',     
+    'im_bank_mob' => 'required',
+    'im_bank_acc'  => 'required',
+    'im_bank_ifsc'  => 'required',  
+    
+          
+]); 
+       
+       $mst_im_reg = new Mst_im_reg;
+     $mst_im_reg->user_id = Input::get('im_bank_name');
+     $mst_im_reg->im_unit_name = Input::get('im_bank_branch');
+     $mst_im_reg->im_unit_add = Input::get('im__bank_add');
+     $mst_im_reg->im_unit_tal = Input::get('im_bank_pin');
+     $mst_im_reg->im_unit_dist = Input::get('im_bank_mob');
+     $mst_im_reg->im_unit_state = Input::get('im_bank_acc');
+     $mst_im_reg->im_unit_pin = Input::get('im_bank_ifsc');
+     $mst_im_reg->im_no = Input::get('im_no');
+       
+       
+      
+     $mst_im_reg2 = DB::table('mst_im_regs')
+             ->join('users', 'mst_im_regs.user_id', '=', 'users.id')
+             ->select('mst_im_regs.*', 'users.*')
+             ->where('im_no' ,$im_no)     
+            ->get();
+         
+      return view('IN_3')->with(['mst_im_reg2' => $mst_im_reg2]);
+       
+       
+       
+       
+       
     }
 
     /**

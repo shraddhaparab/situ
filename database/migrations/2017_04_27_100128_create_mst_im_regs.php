@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMstImRegsTable extends Migration
+class CreateMstImRegs extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateMstImRegsTable extends Migration
      */
     public function up()
     {
-       Schema::create('mst_im_regs', function (Blueprint $table) {
+         Schema::create('mst_im_regs', function (Blueprint $table) {
             $table->increments('im_no');
             $table->integer('user_id');
             
@@ -31,10 +31,23 @@ class CreateMstImRegsTable extends Migration
             $table->string('im_unit_for');
             $table->integer('im_unit_cat');
             $table->string('im_unit_firm');
+            
+            $table->string('im_reg_auth');
+            $table->string('im_prems');
+            
+            $table->string('im_bank_name');
+            $table->string('im_bank_branch');
+            $table->string('im__bank_add');
+            $table->string('im_bank_pin');
+            $table->string('im_bank_mob');
+            $table->string('im_bank_acc');
+            
+            $table->string('im_bank_ifsc');
+            
             $table->timestamps();
              });
     }
-    
+
     /**
      * Reverse the migrations.
      *
@@ -42,6 +55,6 @@ class CreateMstImRegsTable extends Migration
      */
     public function down()
     {
-      Schema::drop('mst_im_regs');
+       Schema::drop('mst_im_regs');
     }
 }

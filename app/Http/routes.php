@@ -48,7 +48,9 @@ Route::get('/user/login', function () {
 
 Route::get('/form/in1/{im_no}', 'IN_PrnController@in1')->name('form.in1.im_no');
 
-Route::get('/form/in2/{im_no}', 'IN_PrnController@in2')->name('form.in2.im_no');
+//Route::get('/form/in2/{im_no}/{im_prems}', 'IN_PrnController@in2')->name('form.in2.im_no.im_prems');
+//Route::get('/in2/{im_no}/{im_prems}', 'IN_PrnController@in2')->name('in2.im_no','in2.im_prems');
+Route::get('in2/{im_no}/{im_prems}',['as' => 'im2.index', 'uses' => 'IN_PrnController@in2']);
 
 Route::get('/form/sub/{im_no}', 'IN_PrnController@index')->name('form.sub.im_no');
 
@@ -149,4 +151,4 @@ Route::get('/', function () {
 
 Route::auth();
 
-Route::get('/home', array('uses' => 'HomeController@index') );
+Route::get('home', array('uses' => 'HomeController@index') );

@@ -33,15 +33,25 @@
                  <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
          
                  @foreach($mst_im_reg as $mst_im_regs)
-
                  
-                <div class="col-md-3">
+                    <input type="hidden" name="im_no" value="{{ $mst_im_regs->im_no}}">
+                 
+                 <div class="col-md-2">
+                  <div class="form-group">
+                    <label for="im_reg_auth" class="control-label">Registering Authority</label>
+                    <input type="text" class="form-control" id="im_reg_auth" placeholder=""  name="im_reg_auth" readonly>
+                    
+                  </div>
+                </div>
+                 
+                 
+                <div class="col-md-2">
                   <div class="form-group">
                      <label for="im_unit_firm" class="control-label">Constitution of Firm</label>
                        <input class="form-control" id="im_unit_firm" placeholder="" name="im_unit_firm" type="text" value="{{ $mst_im_regs->im_unit_firm}}" readonly>
                    </div></div>
                  
-                <div class="col-md-3">
+                <div class="col-md-2">
                   <div class="form-group">
                         <label for="own_name" class="control-label">Name of Proprietor</label>
 					 
@@ -166,7 +176,7 @@
                 <div class="col-md-3">
                   <div class="form-group">
                      <label class="control-label" for="im_bank_phone">Bank Phone Number</label>
-                    <input type="text" class="form-control" id="im_bank_pin" name="im_bank_pin" placeholder="Enter Bank Phone Number ">
+                    <input type="text" class="form-control" id="im_bank_mob" name="im_bank_mob" placeholder="Enter Bank Phone Number ">
                </div>
                 </div>
                 <div class="col-md-3">
@@ -190,7 +200,8 @@
               <div class="modal-footer">
                 <ul class="pager">
                   <li>
-                    <a href=""{!! route('form.in1.im_no', [$mst_im_regs->im_no]) !!}"">←  Prev</a>
+                    <a href="{!! route('form.in1.im_no', [$mst_im_regs->im_no]) !!}">← Prev</a>
+                   
                   </li>
                   <li>
                     <a href="IN_3">Next  →</a>

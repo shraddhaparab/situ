@@ -1,25 +1,12 @@
-<html><head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
     
-     <link rel="stylesheet" href="{{URL::asset('assets/css/bootstrap.min.css')}}">
-     <link rel="stylesheet" href="{{URL::asset('http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css')}}">
-        <script type="text/javascript" src="{{URL::asset('assets/js/jquery.min.js')}}"></script>
-         <script type="text/javascript" src="{{URL::asset('assets/js/custom_script.js')}}"></script>
-        <link rel="stylesheet" href="{{URL::asset('assets/css/bootstrap.min.css')}}">
-        <link rel="stylesheet" href="{{URL::asset('assets/css/custom2.css')}}">
-        <link rel="stylesheet" href="{{URL::asset('assets/css/bootstrap.css')}}">
-       <!--    <link rel="stylesheet" href="{{URL::asset('assets/css/custom.css')}}">
-    
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	 <script type="text/javascript" src="custom_script.js"></script>
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css" class="cust">
-    <link href="custom2.css" rel="stylesheet" type="text/css">
-    <link href="bootstrap\css\bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="login\custom.css" rel="stylesheet" type="text/css">     -->
-       
+
+    <head>
+  </head>
+  @extends('layouts.app')
+  <body>
+   
+   @section('content')
        
   </head><body>
     <div class="section">
@@ -46,7 +33,15 @@
             <label>Application Form for submitting the claim for subsidy after installation of attachments  </label>
           </div>
           <form action="" method="post">
+              {{ csrf_field() }}
+
+                 <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
             <div class="modal-body">
+                 @foreach($mst_im_reg as $mst_im_regs)
+
+               
+                  <input type="hidden" name="im_no" value="{{ $mst_im_regs->im_no}}">
+                
               <div class="row">
                 <div class="col-md-3">
                   <div class="form-group">
@@ -67,42 +62,43 @@
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                    <label class="control-label" for="fadd">Name of the Unit</label>
-                    <input class="form-control" id="fadd" placeholder="" type="text" readonly>
-                   
+                      <label class="control-label" for="im_unit_name">Unit Name</label>
+                      <input type="text" class="form-control" id="im_unit_name" placeholder="" name="im_unit_name" value="{{ $mst_im_regs->im_unit_name}}" readonly>
+                    
                   </div>
                 </div>
-                <div class="col-md-3">
+                 <div class="col-md-3">
                   <div class="form-group">
-                    <label class="control-label" for="fadd">Address Of the Unit</label>
-                    <input class="form-control" id="fadd1" placeholder="" type="text" readonly>
+                    <label class="control-label" for="im_unit_add">Address of Factory</label>
+                    <input type="text" class="form-control" id="im_unit_add" placeholder="" name="im_unit_add" value="{{ $mst_im_regs->im_unit_add}}" readonly>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-3">
                   <div class="form-group">
-                  <label class="control-label" for="fadd">Taluka/Tahashil Mandal</label>
-                    <input class="form-control" id="fadd1" placeholder="" type="text" readonly>
+                    <label class="control-label" for="im_unit_tal">Taluka / Tahashil / Mandal</label>
+                    <input class="form-control" id="im_unit_tal" placeholder=""  name="im_unit_tal" type="text" value="{{ $mst_im_regs->im_unit_tal}}" readonly>
                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                   <label class="control-label" for="fadd">District</label>
-                    <input class="form-control" id="fadd1" placeholder="" type="text" readonly>
+                  <label class="control-label" for="im_unit_dist">District</label>
+                   <input class="form-control" id="im_unit_dist" placeholder=""  name="im_unit_dist" type="text" value="{{ $mst_im_regs->im_unit_dist}}" readonly>
+                  
+                </div>
+				</div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                   <label class="control-label" for="im_unit_state">State</label>
+                   <input class="form-control" id="im_unit_state" placeholder=""  name="im_unit_state" type="text" value="{{ $mst_im_regs->im_unit_state}}" readonly>
                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                    <label class="control-label" for="fadd">State</label>
-                    <input class="form-control" id="fadd1" placeholder="" type="text" readonly>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                   <label class="control-label" for="fadd">Pincode</label>
-                    <input class="form-control" id="fadd3" placeholder="" type="text" readonly>
-                  </div>
+                    <label class="control-label" for="fadd">Pincode</label>
+                    <input class="form-control" id="im_unit_pin" placeholder="" name="im_unit_pin" type="text" value="{{ $mst_im_regs->im_unit_pin}}" readonly>
+                    </div>
                 </div>
               </div>
               <div class="row">
@@ -115,51 +111,52 @@
                
                   <div class="col-md-3">
                   <div class="form-group">
-                    <label for="fname" class="control-label">Mobile Number/ Phone Number</label>
-                    <input class="form-control" id="fmob" placeholder="" type="text" readonly>
+                    <label for="im_unit_mob" class="control-label">Mobile Number/ Phone Number</label>
+                    <input class="form-control" id="im_unit_mob" placeholder="" name="im_unit_mob" type="text" value="{{ $mst_im_regs->im_unit_mob}}" readonly>
                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                    <label class="control-label" for="fname">Fax Number</label>
-                    <input class="form-control" id="ffax" placeholder="" type="text" readonly>
+                   <label class="control-label" for="im_unit_fax">Fax Number</label>
+                    <input class="form-control" id="im_unit_fax" placeholder="" name="im_unit_fax" type="text" value="{{ $mst_im_regs->im_unit_fax}}" readonly>
                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                    <label for="fname" class="control-label">Email</label>
-                    <input class="form-control" id="femail" placeholder="" type="email" readonly>
+                     <label for="im_unit_email" class="control-label">Email</label>
+                    <input class="form-control" id="im_unit_email" placeholder=""  name="im_unit_email" type="email" value="{{ $mst_im_regs->im_unit_email}}" readonly>
                   </div>
-                </div>
-                </div>
+                </div>                </div>
               
               <div class="row">
                 <div class="col-md-3">
                   <div class="form-group">
-                    <label class="control-label" for="fname">PAN Number</label>
-                    <input class="form-control" id="fpan" placeholder="" type="text" readonly>
+                    <label class="control-label" for="username">PAN Number</label>
+                      <input class="form-control" id="username" placeholder=""  name="username" type="text" value="{{ $mst_im_regs->name}}" readonly>
                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                   <label for="fname" class="control-label">Name of Contact Person</label>
-                    <input class="form-control" id="fcp" placeholder="" type="text" readonly>
-                  </div>
+                    <label for="co_cont_name" class="control-label">Name of Contact Person</label>
+                    <input class="form-control" id="co_cont_name"  type="text" name="co_cont_name" value="{{ $mst_im_regs->co_cont_name}}"  readonly>
+                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                     <label class="control-label" for="fadd">Contact Number/ Mobile Number</label>
-                    <input class="form-control" id="fcpmb" placeholder="" type="text" readonly>
-                  </div>
+                    <label class="control-label" for="co_cont_no">Contact Number/ Mobile Number</label>
+                    <input class="form-control" id="co_cont_no" type="text" name="co_cont_no" value="{{ $mst_im_regs->co_cont_no}}" readonly>
+                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                    <label class="control-label" for="fname">IM Number</label>
-                    <input class="form-control" id="fpan" placeholder="" type="text" readonly>
-                  </div>
+                      <label class="control-label" for="im_no">IM Number</label>
+                      <input type="text" class="form-control" id="im_no" placeholder="" name="im_no1" value="{{ $mst_im_regs->im_no}}" readonly>
+                    
+                 </div>
                 </div>
               </div>
               <div class="row">
+                  <!--
                 <div class="col-md-3">
                   <div class="form-group">
                    <label for="fname" class="control-label">Powerloom Permit Number</label>
@@ -171,99 +168,166 @@
                     <label for="fname" class="control-label">Powerloom Permit date</label>
                     <input type="text" class="form-control" id="fcp" readonly>
                   </div>
-                </div>
+                </div> -->
                 <div class="col-md-3">
                   <div class="form-group">
-                    <label for="fname" class="control-label">Registering Authority</label>
-                    <input type="text" class="form-control" id="fcp" placeholder="" readonly>
+                    <label for="im_reg_auth" class="control-label">Registering Authority</label>
+                    <input type="text" class="form-control" id="im_reg_auth" placeholder=""  name="im_reg_auth" readonly>
                     
                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                    <label for="fname" class="control-label">COnstitution Of Firm</label>
-                    <input type="text" class="form-control" id="fcp" readonly>
-                   
-                  </div>
-                </div>
+                     <label for="im_unit_firm" class="control-label">Constitution of Firm</label>
+                       <input class="form-control" id="im_unit_firm" placeholder="" name="im_unit_firm" type="text" value="{{ $mst_im_regs->im_unit_firm}}" readonly>
+                   </div></div>
               </div>
 			  
 			  <div class="row">
                 <div class="col-md-3">
                   <div class="form-group">
-                   <label for="fname" class="control-label">Name of Proprietor</label>
-                    <input type="text" class="form-control" id="fcp" placeholder="" readonly>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label for="fname" class="control-label">Name of Partners</label>
-                    <input type="text" class="form-control" id="fcp" placeholder="" readonly>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label for="fname" class="control-label">Gender</label>
-                    <input type="text" class="form-control" id="fcp" placeholder="" readonly>
-                    
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label for="fname" class="control-label">Religion</label>
-                    <input type="text" class="form-control" id="fcp" readonly>
-                   
-                  </div>
-                </div>
-              </div>
-			  
-			  <div class="row">
-			         <div class="col-md-3">
-                  <div class="form-group">
-                 <label for="fadd" class="control-label">Category</label>
-                    <input class="form-control" id="fbankadd2" placeholder="" type="text" readonly>
-                  </div>
-                </div>
-			  
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label for="fname" class="control-label">Address of Bank</label>
-                <input type="text" class="form-control" id="fname" placeholder="" readonly>
+                        <label for="own_name" class="control-label">Name of Proprietor</label>
+					 
+                        <input type="text" class="form-control" id="own_name" name="own_name" placeholder=" " value="" readonly>
                 
                   </div>
                 </div>
+                
                 <div class="col-md-3">
                   <div class="form-group">
-                      <label for="fadd" class="control-label">Pincode</label>
-                    <input class="form-control" id="fbankadd2" placeholder="" type="text" readonly>
-                  </div>
+                     <label for="own_gen" class="control-label">Gender</label><br>
+                     <input type="text" class="form-control" id="own_gen" name="own_gen" placeholder=" " value="" readonly>
+                
+                    </div>
                 </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                     <label class="control-label" for="fadd">Phone NUmber</label>
-                    <input class="form-control" id="fbankmob" placeholder="" type="text" readonly>
-                  </div>
-                </div>
-
-              </div>
-			  
-			  
-			   <div class="row">
-                <div class="col-md-3">
-                  <div class="form-group">
-                   <label class="control-label" for="fadd">IFSC Number</label>
-                    <input class="form-control" id="fbankmob" placeholder="" type="text" readonly>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label class="control-label" for="fadd">Account Number</label>
-                    <input class="form-control" id="fcpmb" placeholder="" type="text" readonly>
                   
+                   <div class="col-md-3">
+                  <div class="form-group">
+                  <label for="own_rel" class="control-label">Religion</label>
+			<input type="text" class="form-control" id="own_rel" name="own_rel" placeholder=" " readonly>
+                
                   </div>
                 </div>
-               
+                     
+                               <div class="col-md-3">
+                  <div class="form-group">
+                  <label for="own_cat" class="control-label">Category</label>
+			<input type="text" class="form-control" id="own_cat" name="own_cat" placeholder=" " readonly>
+                 
+                  </div>
+                </div>
+                              
               </div>
+                  
+                  <!--<div class="col-md-12 col-sm-12">
+               
+                <table class="table  table-hover" name="tab_logic" id="tab_logic">
+                  <thead>
+                    <tr>
+		      <th>Name of Partners/Managing Director(s)</th>
+                      <th>Gender</th>
+                      <th>Religion</th>
+                      <th>Category</th>
+                      <th style="width:10px">
+                        <span class="glyphicon glyphicon-plus addBtn" name="add_row" id="add_row"></span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr id="addr0">
+					<td> <input type="text" class="form-control" size="5" value=""  name="part" id="part"></td>
+                      <td>
+
+                        <select  name="gen" id="gen" class="form-control match-content">
+                          <option id="o1">Select</option>
+                          <option>Male</option>
+                          <option>Female</option>
+                          <option>Others</option>
+                        </select>
+                         
+                      </td>
+                      <td>
+                     
+                        <select  name="rel" id="rel" class="form-control match-content">
+                          <option id="o1">Select</option>
+                          <option>Hindu</option>
+                         </select>
+                         
+                      </td>
+                      <td>
+                     
+                        <select  name="cat" id="cat" class="form-control match-content">
+                          <option id="o1">Select</option>
+                          <option>SC/ST</option>
+                          <option>OBC</option>
+                          <option>OPEN</option>
+                        </select>
+                        
+                      </td>
+                    
+                      <td>
+                        <span class="glyphicon glyphicon-minus addBtnRemove"  name="delete_row" id="delete_row"></span>
+                      </td>
+                    </tr>
+					  <tr id='addr1'></tr>
+					    
+                  </tbody>
+                </table> 
+              </div> -->
+                  
+                  
+			  
+			  <div class="row">
+            
+                 <div class="col-md-3">
+                  <div class="form-group">
+                       <label for="im_bank_name" class="control-label">Bank Name</label>
+			<input type="text" class="form-control" id="im_bank_name" name="im_bank_name" readonly>
+                 
+                   </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                 <label for="im_bank_branch" class="control-label">Branch Name</label>
+                <input type="text" class="form-control" id="im_bank_branch" name="im_bank_branch" readonly >
+                   </div>
+                </div>
+             
+                <div class="col-md-3">
+                  <div class="form-group">
+                  <label for="im_bank_add" class="control-label">Address of Bank</label>
+                <input type="text" class="form-control" id="im__bank_add" name="im_bank_add" readonly>
+               
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                      <label for="im_bank_pin" class="control-label">Pincode</label>
+                    <input type="text" class="form-control" id="im_bank_pin" name="im_bank_pin" readonly >
+               </div>
+                </div>
+                   </div>
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="form-group">
+                     <label class="control-label" for="im_bank_phone">Bank Phone Number</label>
+                    <input type="text" class="form-control" id="im_bank_pin" name="im_bank_pin" readonly>
+               </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                 <label for="im_bank_acc" class="control-label">Account Number</label>
+                    <input type="text" class="form-control" id="im_bank_acc" name="im_bank_acc" readonly >
+               </div>
+                </div>
+              
+              
+                <div class="col-md-3">
+                  <div class="form-group">
+                   <label class="control-label" for="im_bank_ifsc">IFSC Number</label>
+                  <input type="text" class="form-control" id="im_bank_ifsc" name="im_bank_ifsc" readonly>
+               </div>
+                </div>
 			  
 			  
 			  
@@ -275,6 +339,8 @@
                   </div>
                 </div>
               </div>
+                          
+                @endforeach           
             </div>
             <div class="row">
               <div class="col-md-12">
@@ -386,6 +452,6 @@
           
         </div>
       
-  
+  @endsection
 
 </body></html>

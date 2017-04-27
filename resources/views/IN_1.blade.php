@@ -103,11 +103,11 @@
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                    <label class="control-label" for="fprem">Whether premises is Owned or Rented</label>
+                    <label class="control-label" name="im_prems" for="fprem">Whether premises is Owned or Rented</label>
                     <label class="radio-inline">
-                      <input type="radio" name="optradio">Owned</label>
+                      <input type="radio" name="optradio" name="im_prems" value="Owned">Owned</label>
                     <label class="radio-inline">
-                      <input type="radio" name="optradio">Rented</label>
+                      <input type="radio" name="optradio" name="im_prems" value="Rented">Rented</label>
                   </div>
                 </div>
 				</div>
@@ -196,7 +196,8 @@
                 <ul class="pager">
                  
                   <li>
-                    <a href="{!! route('form.in2.im_no', [$mst_im_regs->im_no]) !!}">Next  →</a>
+                      <a href ="{!!route('im2.index',['im_no'=>$mst_im_regs->im_no,'im_prems'=>$mst_im_regs->im_prems])!!}">Next -> </a>
+                     
                   </li>
                 </ul>
               </div>

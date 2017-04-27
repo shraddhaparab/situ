@@ -53,12 +53,17 @@
          <label> Application Form for obtaining IM-Principal Approval </label>
           </div>
           <form id="myForm" method="post" enctype="multipart/form-data">
-            <div class="modal-body">
-              <div class="row">
-                  {{ csrf_field() }}
+               {{ csrf_field() }}
 
                  <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
-            
+            <div class="modal-body">
+                 @foreach($mst_im_reg2 as $mst_im_regs)
+                 
+                    <input type="hidden" name="im_no" value="{{ $mst_im_regs->im_no}}">
+                    <h3>{{ $mst_im_regs->im_no}}</h3>
+              <div class="row">
+                 
+                 
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="control-label" for="fadd">Attachments/ Kits applied for with Details</label>
@@ -158,6 +163,7 @@
           </ul>
             
         </div>
+           @endforeach
           </div>
               </form>
         </div>
