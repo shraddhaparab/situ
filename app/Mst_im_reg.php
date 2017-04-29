@@ -18,4 +18,8 @@ class Mst_im_reg extends Model
         'user_id',
     ];
    
+    public function __toString()
+    {
+        return $this->Mst_im_reg;
+    }
 }

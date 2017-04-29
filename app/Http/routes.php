@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('log', function () {
+    return view('log');
+});
+
 
 
 Route::get('welcome', function () {

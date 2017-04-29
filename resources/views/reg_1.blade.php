@@ -1,24 +1,49 @@
 
 <script type="text/javascript">
     
-    $(document).ready(function(){
-      var i=1;
-     $("#add_row").click(function(){
-      $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input name='part"+i+"' type='text'  class='form-control input-md'/></td><td><select id='gen"+i+"' class='form-control input-md'/></td><td><select id='rel"+i+"' class='form-control input-md'/></td><td><select id='cat"+i+"' class='form-control input-md'/></td><td><span class='glyphicon glyphicon-minus addBtnRemove'  name='delete_row"+i+"' ></span></td>  ");
+   function addRow(tableID) {
 
-      $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
-      i++; 
-  });
-     $("#delete_row").click(function(){
-    	 if(i>1){
-		 $("#addr"+(i-1)).html('');
-		 i--;
-		 }
-	 });
+			var table = document.getElementById(tableID);
 
-});
-    
-   function ShowHideDiv() {
+			var rowCount = table.rows.length;
+			var row = table.insertRow(rowCount);
+
+			var colCount = table.rows[1].cells.length;
+
+			for(var i=0; i<colCount; i++) {
+
+				var newcell	= row.insertCell(i);
+
+				newcell.innerHTML = table.rows[1].cells[i].innerHTML;
+				//alert(newcell.childNodes);
+				switch(newcell.childNodes[0].type) {
+					case "text":
+							newcell.childNodes[0].value = "";
+							break;
+					case "select-one":
+							newcell.childNodes[0].selectedIndex = 0;
+							break;
+                                                        
+                                        case "select-one":
+							newcell.childNodes[0].selectedIndex = 0;
+							break;
+					case "select-one":
+							newcell.childNodes[0].selectedIndex = 0;
+							break;
+				}
+			}
+		}
+
+		function deleteRow(x,tableID) {
+			try {
+			 var row = x.parentNode.parentNode;
+    document.getElementById(tableID).deleteRow(row.rowIndex);
+    console.log(row);
+			}catch(e) {
+				alert(e);
+			}
+		}
+  function ShowHideDiv() {
         var chkYes = document.getElementById("chkYes");
         var dvcost = document.getElementById("dvcost");
         dvcost.style.display = chkYes.checked ? "block" : "none";
@@ -207,32 +232,33 @@
                 
                 <div class="row">
                
+                    
                 <div class="col-md-3">
                   <div class="form-group">
-                     <label for="fname" class="control-label">Name of Proprietor</label>
+                     <label for="app_name" class="control-label">Name of Proprietor</label>
 					 
-                    <input type="text" class="form-control" id="" name="" placeholder=" ">
+                    <input type="text" class="form-control" id="app_name" name="app_name[]" placeholder=" ">
                 
                   </div>
                 </div>
                 
                 <div class="col-md-3">
                   <div class="form-group">
-                      <label for="fprem" class="control-label">Gender</label><br>
+                      <label for="app_gen[]" class="control-label">Gender</label><br>
                    <label class="radio-inline">
-                      <input type="radio" name="optradio">Male</label>
+                      <input type="radio" name="app_gen[]" value="Male">Male</label>
                     <label class="radio-inline">
-                      <input type="radio" name="optradio">Female</label>
+                      <input type="radio" name="app_gen[]" value="Female">Female</label>
                     <label class="radio-inline">
-                      <input type="radio" name="optradio">Others</label>
+                      <input type="radio" name="app_gen[]" value="Others">Others</label>
                   </div>
                 </div>
                   
                    <div class="col-md-3">
                   <div class="form-group">
-                  <label for="fadd" class="control-label">Religion</label>
-				  <div class="select-style">
-                    <select class="form-control match-content" name="">
+                  <label for="app_rel" class="control-label">Religion</label>
+		<div class="select-style">
+                    <select class="form-control match-content" id="app_rel" name="app_rel[]">
                       <option selected="">Select</option>
                       <option>Hindu</option>
                     </select>
@@ -242,9 +268,9 @@
 				</div>
                     <div class="col-md-3">
                   <div class="form-group">
-                    <label for="fadd" class="control-label">Category</label>
+                    <label for="app_cat" class="control-label">Category</label>
 					<div class="select-style">
-                    <select class="form-control match-content" name="">
+                    <select class="form-control match-content"  name="app_cat[]">
                       <option selected="">Select</option>
                       <option>SC/ ST</option>
                       <option>OBC</option>
@@ -255,63 +281,75 @@
                 </div>
 				</div>
               </div>
+			  
+			  <div class="row">
+             
                   
-                  <div class="col-md-12 col-sm-12" id="dvcost" style="display: none">
+                <div class="col-md-12 col-sm-12" id="dvcost" style="display: none">
                
-                <table class="table  table-hover" name="tab_logic" id="tab_logic">
+                <table class="table table-bordered table-hover" name="tab_logic" id="tab_logic">
                   <thead>
                     <tr>
+                    
 		      <th>Name of Partners/Managing Director(s)</th>
                       <th>Gender</th>
                       <th>Religion</th>
                       <th>Category</th>
                       <th style="width:10px">
-                        <span class="glyphicon glyphicon-plus addBtn" name="add_row" id="add_row"></span>
+                         <span class="glyphicon glyphicon-plus addBtn" name="add_row" id="add_row" onclick="addRow('tab_logic');"></span>
                       </th>
+                      
                     </tr>
                   </thead>
                   <tbody>
                     <tr id="addr0">
-		<td> <input type="text" class="form-control" size="5" value=""  name="part" id="part"></td>
+				
+                      <input type="hidden" name="im_no[]" value="">    
+		<td> <input type="text" class="form-control" size="5" value=""  name="app_name[]" id="app_name"></td>
                       <td>
 
-                        <select  name="gen" id="gen" class="form-control match-content">
-                          <option id="o1">Select</option>
-                          <option>Male</option>
-                          <option>Female</option>
-                          <option>Others</option>
+                        <select  name="app_gen[]" id="app_gen" class="form-control match-content">
+                          
+                          
+                    <option value="">Select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Others">Others</option>
+        
+                          
                         </select>
                          
                       </td>
                       <td>
                      
-                        <select  name="rel" id="rel" class="form-control match-content">
-                          <option id="o1">Select</option>
-                          <option>Hindu</option>
+                        <select  name="app_rel[]" id="app_rel" class="form-control match-content">
+                          <option value="">Select</option>
+                         <option value="Hindu">Hindu</option>
                          </select>
                          
                       </td>
                       <td>
                      
-                        <select  name="cat" id="cat" class="form-control match-content">
-                          <option id="o1">Select</option>
-                          <option>SC/ST</option>
-                          <option>OBC</option>
-                          <option>OPEN</option>
+                        <select  name="app_cat[]" id="app_cat" class="form-control match-content">
+                          <option value="">Select</option>
+                          <option value="SC/ST">SC/ST</option>
+                          <option value="OBC">OBC</option>
+                          <option value="OPEN">OPEN</option>
                         </select>
                         
                       </td>
                     
                       <td>
-                        <span class="glyphicon glyphicon-minus addBtnRemove"  name="delete_row" id="delete_row"></span>
+                         
+                        <span class="glyphicon glyphicon-minus addBtnRemove"  name="delete_row" id="delete_row" onclick="deleteRow(this,'tab_logic')"></span>
                       </td>
                     </tr>
-					  <tr id='addr1'></tr>
+					  <tr name='1' id='addr1'></tr>
 					    
                   </tbody>
                 </table>
               </div>
-                
+              <div>  
                
                     
                     
