@@ -46,7 +46,7 @@
          You are not allow to generate IN Principal Number 
      </td>
      @endif
-      <td> 
+      <!--<td> 
          @if($mst_im_regs->im_status =='active')    
          
       <a class="btn btn-info" href="{!! route('form.sub.im_no', [$mst_im_regs->im_no]) !!}">Application for subsidy after installation</a>   
@@ -55,7 +55,7 @@
      @else
      
          You are not allow to apply 
-     </td>
+     </td>-->
     
      
      </tr>

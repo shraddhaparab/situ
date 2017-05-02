@@ -43,6 +43,13 @@
 				alert(e);
 			}
 		}
+       
+       function PropDiv() {
+        var prop = document.getElementById("prop");
+        var dvprop = document.getElementById("dvprop");
+        dvprop.style.display = prop.checked ? "block" : "none";
+    }
+                
   function ShowHideDiv() {
         var chkYes = document.getElementById("chkYes");
         var dvcost = document.getElementById("dvcost");
@@ -216,24 +223,24 @@
                      <div class="col-md-9">
                   <div class="form-group">
 		 <label class="radio-inline">
-                    <input type="radio"  value="Proprietorship" name="im_unit_firm" id="chkNo" onclick="ShowHideDiv()">Proprietorship</label>
+                    <input type="radio"  value="Proprietorship" name="im_unit_firm" id="prop" onclick="PropDiv(); ShowHideDiv();">Proprietorship</label>
                     <label class="radio-inline" >
-                      <input type="radio"  value="Partnership" name="im_unit_firm" id="chkYes" onclick="ShowHideDiv()" >Partnership</label>
+                      <input type="radio"  value="Partnership" name="im_unit_firm" id="chkYes" onclick="PropDiv(); ShowHideDiv();" >Partnership</label>
                     <label class="radio-inline" >
-                        <input type="radio"  value="Pvt.Ltd" name="im_unit_firm" id="chkYes" onclick="ShowHideDiv()">Pvt.Ltd</label>
+                        <input type="radio"  value="Pvt.Ltd" name="im_unit_firm" id="chkYes" onclick="PropDiv()">Pvt.Ltd</label>
                     <label class="radio-inline" >
-                      <input type="radio" name="im_unit_firm"  value="Co-Operative" id="chkYes" onclick="ShowHideDiv()"> Co-Operative</label>
+                      <input type="radio" name="im_unit_firm"  value="Co-Operative" id="chkYes" onclick="PropDiv()"> Co-Operative</label>
                     <label class="radio-inline" >
-                      <input type="radio" name="im_unit_firm" id="chkYes" value="Others" onclick="ShowHideDiv()" >Others</label>
+                      <input type="radio" name="im_unit_firm" id="chkYes" value="Others" onclick="PropDiv()" >Others</label>
                   </div>
                 </div>
                 </div>
                 
                 
-                <div class="row">
+                <div class="row" id="dvprop" style="display: none">
                
                     
-                <div class="col-md-3">
+                <div class="col-md-3" >
                   <div class="form-group">
                      <label for="app_name" class="control-label">Name of Proprietor</label>
 					 
@@ -304,7 +311,7 @@
                   <tbody>
                     <tr id="addr0">
 				
-                      <input type="hidden" name="im_no[]" value="">    
+                     
 		<td> <input type="text" class="form-control" size="5" value=""  name="app_name[]" id="app_name"></td>
                       <td>
 

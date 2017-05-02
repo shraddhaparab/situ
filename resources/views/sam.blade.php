@@ -38,94 +38,35 @@
     </style>
 
 
+
+
+
+
 <script language="JavaScript">
 function UpperCase(ctrlID) {
             var PANNo = document.getElementById(ctrlID).value;
-            if (PANNo !== "") {
+            if (PANNo != "") {
                 document.getElementById(ctrlID).value = PANNo.toUpperCase();
             }
         }
 
+
+ 
       
     function showdiv() {
   document.getElementById("admin").style.display = "none";
   }
 
+   
+
+
+
 </script>
 </head>
 
- <body id="app-layout">
-    
-    
-    <div class="container-fluid">
-   
-   <div class="row">
-   <div class="col-md-4">
-	<img src="logo.jpg" width="60" height="20" class="img-responsive" class="pull-left" class="img-thumbnail">
-	</div>
-	<div class="col-md-8">
-	<label><center>
-	<br>
-	Government of India Ministry of Textiles<br>
-
-Regional Office of the Textile Commissioner,
-Navi Mumbai </center></label>
-	</div>
-	
-	</div>
-    
-    
-    </div>
-    
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                  
-                </a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
-                </ul>
-
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
-                    @if (Auth::guest())
-                    <li><a href="{{ url('/login') }}" onclick="getElementById('uname').innerHTML='User Name';return false;">Staff Login</a></li>
-                        <li><a href="{{ url('/login') }}"> User Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
-                        
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                            </ul>
-                        </li>
-                    @endif
-                </ul>
-            </div>
-        </div>
-    </nav>   
-    
- 
+@extends('layouts.app')
+<!-- Login form for user-->
+@section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-4 col-md-offset-1">
@@ -137,7 +78,7 @@ Navi Mumbai </center></label>
 
                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" id="uname" class="col-md-4 control-label">PAN Number <span style="color: red">*</span></label>
+                            <label for="name" class="col-md-4 control-label">PAN Number&nbsp;<span style="color: red">*</span></label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" onkeypress="UpperCase('name');" onkeyup="UpperCase('name');">
@@ -188,26 +129,82 @@ Navi Mumbai </center></label>
             </div>
         </div>
         
-         
+        
+        
+        
+        
+        <!-- admin login-->
+        
+         <div  id="admin" class="col-md-4 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Staff Login</div>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                        {{ csrf_field() }}
+
+                          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label for="name" class="col-md-4 control-label">User Name&nbsp;<span style="color: red">*</span></label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
+
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first(name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label for="password" class="col-md-4 control-label">Password&nbsp;<span style="color: red">*</span></label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="password">
+
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="remember"> Remember Me
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-btn fa-sign-in"></i> Login
+                                </button>
+
+                                <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </div>
 </div>
-    
-     
-<script>
-            	
-  
-</script>
-    
-    
-    <!-- JavaScripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
-
-
-
-
-    
-    
-</body>
-</html>
+@endsection

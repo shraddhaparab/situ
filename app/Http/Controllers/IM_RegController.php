@@ -167,62 +167,28 @@ if (count($users1)>0)
    // echo " user";
     $im_no = $users1[$im_count-1]->im_no;
     echo $im_no;
-    
-$count = count($request['app_name']); // here we will know how many entries have been posted
-$owners = array();
-for($i=0; $i<$count; $i++){
-   if(($request['app_name'][$i])){
-     array_push($owners, array( // iterate through each entry and create an array of inputs
-      'im_no' => [$im_no] [$i],
-      'app_name' => $request['app_name'][$i], 
-      'app_gen' => $request['app_gen'][$i], 
-      'app_rel' => $request['app_rel'][$i],
-      'app_cat' => $request['app_cat'][$i]
-     ));
-   }
-}
-Trn_applicant_details::insert($owners);
 
+
+foreach($request['app_name'] as $index => $value) {
+    $trn_applicant_details = new Trn_applicant_details;
     
-    
-    
-// echo "test";
+    $trn_applicant_details->app_gen = $request['app_gen'][$index];
+    $trn_applicant_details->app_rel = $request['app_rel'][$index];
+    $trn_applicant_details->app_cat = $request['app_cat'][$index];
+    $trn_applicant_details->app_name = $request['app_name'][$index];
+    $trn_applicant_details->im_no = $im_no;
+   $trn_applicant_details->save();
+}
+
+
 }
 else
-{// echo "user";
- //echo $users1[$i]->im_no;
+{
  echo "test1";
-//foreach($users1 as $x)
-//{
- // $im=$x->im_no;
-  
- // echo $im;
+
     
 }
 
-
-    
-        
-
-//return $mst_im_reg->im_no;
-//$mst_im_reg->im_no;
-//$trn_applicant_details = new Trn_applicant_details;
-/*
-$count = count($request['app_name']); // here we will know how many entries have been posted
-$owners = array();
-for($i=0; $i<$count; $i++){
-   if(($request['app_name'][$i])){
-     array_push($owners, array( // iterate through each entry and create an array of inputs
-      'im_no' => $im_no,
-      'app_name' => $request['app_name'][$i], 
-      'app_gen' => $request['app_gen'][$i], 
-      'app_rel' => $request['app_rel'][$i],
-      'app_cat' => $request['app_cat'][$i]
-     ));
-   }
-}
-Trn_applicant_details::insert($owners);
-*/
 return view("reg_2");
 
     }
@@ -238,21 +204,10 @@ return view("reg_2");
     {
       
         
-        
-        
-      /* $im1="No.4(80)/IMBHI/";
-        $year=date('Y');
-        $im2="/ROM/";  
-        
-        $im_no=$im1.$year.$im2; */
+      
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function edit($id)
     {
         //
