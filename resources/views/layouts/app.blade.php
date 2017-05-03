@@ -13,6 +13,7 @@
      <link rel="stylesheet" href="{{URL::asset('assets/css/bootstrap.min.css')}}">
      <link rel="stylesheet" href="{{URL::asset('http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css')}}">
         <script type="text/javascript" src="{{URL::asset('assets/js/jquery.min.js')}}"></script>
+        <script type="text/javascript" src="{{URL::asset('assets/js/jquery.js')}}"></script>
          <script type="text/javascript" src="{{URL::asset('assets/js/custom_script.js')}}"></script>
         <link rel="stylesheet" href="{{URL::asset('assets/css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{URL::asset('assets/css/custom2.css')}}"> 
@@ -44,7 +45,7 @@
    
    <div class="row">
    <div class="col-md-4">
-	<img src="logo.jpg" width="60" height="20" class="img-responsive" class="pull-left" class="img-thumbnail">
+	<img src="assets/images/logo.jpg" width="60" height="20" class="img-responsive" class="pull-left" class="img-thumbnail">
 	</div>
 	<div class="col-md-8">
 	<label><center>
