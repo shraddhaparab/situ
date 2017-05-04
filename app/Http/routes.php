@@ -143,10 +143,17 @@ Route::get('mainlogin', function () {
 
 
 
-Route::get('/admin', 'HomeController@admin');
+Route::get('/RO/RO_dashboard', 'HomeController@RO_dashboard');
 
-Route::get('/admin/dashboard', array('uses' => 'IM_RegController@mst_im_list'));
+Route::get('/RO/RO_pend_IM', array('uses' => 'IM_RegController@RO_IM_list'));
 
+Route::get('/JIT/JIT_dashboard', 'HomeController@JIT_dashboard');
+
+Route::get('/JIT/JIT_Format_III', 'HomeController@JIT_app_form');
+
+Route::get('/OIC/OIC_dashboard', 'HomeController@OIC_dashboard');
+
+Route::get('/OIC/OIC_Format_IV', 'HomeController@OIC_app_form');
 //Route::get('/admin/approved', array('uses' => 'IM_RegController@approve'));
 
 Route::get('/', function () {

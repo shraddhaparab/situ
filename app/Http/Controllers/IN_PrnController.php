@@ -117,7 +117,10 @@ class IN_PrnController extends Controller
         return view("format_II");
     }
      
-    
+    public function in_format3()
+    {
+        return view("format_III_1");
+    }
 
     /**
      * Show the form for creating a new resource.

@@ -26,10 +26,32 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-     public function admin()
+     public function RO_dashboard()
     {
-        return view("admin");
+        return view("RO/RO_dashboard");
     }
+    
+     public function JIT_dashboard()
+    {
+        return view("JIT/JIT_dashboard");
+    }
+    
+     public function JIT_app_form()
+    {
+        return view("JIT/JIT_Format_III");
+    }
+    
+     public function OIC_dashboard()
+    {
+        return view("OIC/OIC_dashboard");
+    }
+    
+     public function OIC_app_form()
+    {
+        return view("OIC/OIC_Format_IV");
+    }
+
+    
     
     public function index()
     {
@@ -45,7 +67,7 @@ class HomeController extends Controller
              ->select('im_no', 'im_status','created_at')
              ->where('user_id' ,$user->id)   
               ->orderby('user_id')
-                 
+              ->groupby('im_status')   
             ->get();
          //echo $mst_im_reg;
          return view('home')->with(['mst_im_reg' => $mst_im_reg]);
@@ -54,10 +76,19 @@ class HomeController extends Controller
             
         //return view('home');
         }
-        else
+        elseif ($userrole=='RO')
         {
-          return view('admin');  
+          return view('RO/RO_dashboard');  
         }
+        elseif ($userrole=='JIT')
+        {
+          return view('JIT/JIT_dashboard');  
+        }
+        else 
+        {
+          return view('OIC/OIC_dashboard');  
+        }
+        
         
 }
     

@@ -46,15 +46,15 @@
        
        function PropDiv() {
         var prop = document.getElementById("prop");
-        var dvprop = document.getElementById("dvprop");
-        dvprop.style.display = prop.checked ? "block" : "none";
+        var add_row = document.getElementById("add_row");
+        add_row.style.display = prop.checked ? "none" : "block";
     }
                 
   function ShowHideDiv() {
-        var chkYes = document.getElementById("chkYes");
-        var dvcost = document.getElementById("dvcost");
-        dvcost.style.display = chkYes.checked ? "block" : "none";
-    }
+        var prop = document.getElementById("prop");
+        var delete_row = document.getElementById("delete_row");
+        delete_row.style.display = prop.checked ? "none" : "block";
+    } 
 </script>
 @extends('layouts.app')
   <body>
@@ -89,43 +89,71 @@
               <div class="row">
 		{{ csrf_field() }}
                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                 
+                 
+                 
+                 
+                 
+                 
 			   <div class="col-md-3">
-                  <div class="form-group">
+                 <div class="form-group{{ $errors->has('im_unit_name') ? ' has-error' : '' }}">
                     <label for="im_unit_name" class="control-label">Name of the applicant Textile Unit Block Letters</label>
-                    <input type="text" class="form-control" id="im_unit_name" name="im_unit_name" placeholder="">
-                    <span class="help-block"></span>
+                    <input type="text" class="form-control" id="im_unit_name" name="im_unit_name" value="{{ old('im_unit_name') }}">
+                    @if ($errors->has('im_unit_name'))
+                                    <span class="help-block">
+                                      <!--  <strong>{{ $errors->first('co_name') }}</strong>-->
+                                        <strong>Unit Name is Required</strong>
+                                    </span>
+                                @endif
                   </div>
                 </div>
                               
                  <input type="hidden" name="user_id" value="{{ $user->id }}">
                 
                 <div class="col-md-3">
-                  <div class="form-group">
+                    <div class="form-group{{ $errors->has('im_unit_add') ? ' has-error' : '' }}">
                     <label class="control-label" for="im_unit_add">Address of Factory</label>
-                    <input type="text" class="form-control" id="im_unit_add" placeholder="" name="im_unit_add">
-                    <span class="help-block">Plot No,Street Address.</span>
+                    <input type="text" class="form-control" id="im_unit_add" placeholder="" name="im_unit_add" value="{{ old('im_unit_add') }}">
+                   @if ($errors->has('im_unit_name'))
+                                    <span class="help-block">
+                                      <!--  <strong>{{ $errors->first('co_name') }}</strong>-->
+                                        <strong>Unit Name is Required</strong>
+                                    </span>
+                                @endif
                   </div>
                 </div>
 				
 				
 				
                 <div class="col-md-3">
-                  <div class="form-group">
+                 <div class="form-group{{ $errors->has('im_unit_tal') ? ' has-error' : '' }}">
                     <label class="control-label" for="im_unit_tal">Taluka / Tahashil / Mandal</label>
-                    <input class="form-control" id="im_unit_tal" placeholder=""  name="im_unit_tal" type="text">
+                    <input class="form-control" id="im_unit_tal" placeholder=""  name="im_unit_tal" type="text" value="{{ old('im_unit_tal') }}">
+                    @if ($errors->has('im_unit_tal'))
+                                    <span class="help-block">
+                                      <!--  <strong>{{ $errors->first('co_name') }}</strong>-->
+                                        <strong>Unit Taluka is Required</strong>
+                                    </span>
+                                @endif
                   </div>
                 </div>
                   
                    <div class="col-md-3">
-                  <div class="form-group">
+                   <div class="form-group{{ $errors->has('im_unit_dist') ? ' has-error' : '' }}">
                     <label class="control-label" for="im_unit_dist">District</label>
 					<div class="select-style">
-                    <select class="form-control match-content" name="im_unit_dist">
+                    <select class="form-control match-content" name="im_unit_dist" value="{{ old('im_unit_dist') }}">
                       <option selected="">Select</option>
                       <option>Mumbai</option>
                       <option>Pune</option>
                       <option>Thane</option>
                     </select>
+                      @if ($errors->has('im_unit_dist'))
+                                    <span class="help-block">
+                                      <!--  <strong>{{ $errors->first('co_name') }}</strong>-->
+                                        <strong>Unit District is Required</strong>
+                                    </span>
+                                @endif                       
                   </div>
                 </div>
 				</div>
@@ -138,34 +166,58 @@
                
             
                 <div class="col-md-3">
-                  <div class="form-group">
+                 <div class="form-group{{ $errors->has('im_unit_state') ? ' has-error' : '' }}">
                     <label class="control-label" for="im_unit_state">State</label>
 					<div class="select-style">
                     <select class="form-control match-content" name="im_unit_state">
                       <option selected="">Select</option>
                       <option>Maharashtra</option>
                     </select>
+                          @if ($errors->has('im_unit_state'))
+                                    <span class="help-block">
+                                      <!--  <strong>{{ $errors->first('co_name') }}</strong>-->
+                                        <strong>Unit State is Required</strong>
+                                    </span>
+                                @endif                             
+                                            
                   </div>
                 </div>
 				</div>
                 <div class="col-md-3">
-                  <div class="form-group">
-                    <label class="control-label" for="fadd">Pincode</label>
-                    <input class="form-control" id="im_unit_pin" placeholder="" name="im_unit_pin" type="text">
-                    <span class="help-block">Enter Pincode.</span>
+               <div class="form-group{{ $errors->has('im_unit_pin') ? ' has-error' : '' }}">
+                    <label class="control-label" for="im_unit_pin">Pincode</label>
+                    <input class="form-control" id="im_unit_pin" placeholder="" name="im_unit_pin" type="text" value="{{ old('im_unit_pin') }}">
+                    @if ($errors->has('im_unit_pin'))
+                                    <span class="help-block">
+                                      <!--  <strong>{{ $errors->first('co_name') }}</strong>-->
+                                        <strong>Unit Pincode is Required</strong>
+                                    </span>
+                                @endif   
                   </div>
                 </div>
                <div class="col-md-3">
-                  <div class="form-group">
+                  <div class="form-group{{ $errors->has('im_unit_fax') ? ' has-error' : '' }}">
                     <label class="control-label" for="im_unit_fax">Fax Number</label>
-                    <input class="form-control" id="im_unit_fax" placeholder="" name="im_unit_fax" type="text">
+                    <input class="form-control" id="im_unit_fax" placeholder="" name="im_unit_fax" type="text" value="{{ old('im_unit_fax') }}">
+                  @if ($errors->has('im_unit_fax'))
+                                    <span class="help-block">
+                                      <!--  <strong>{{ $errors->first('co_name') }}</strong>-->
+                                        <strong>Unit Pincode is Required</strong>
+                                    </span>
+                                @endif   
                   </div>
                 </div>
                                      
                    <div class="col-md-3">
-                  <div class="form-group">
+                  <div class="form-group{{ $errors->has('im_unit_mob') ? ' has-error' : '' }}">
                     <label for="im_unit_mob" class="control-label">Mobile Number/ Phone Number</label>
-                    <input class="form-control" id="im_unit_mob" placeholder="" name="im_unit_mob" type="text">
+                    <input class="form-control" id="im_unit_mob" placeholder="" name="im_unit_mob" type="text" value="{{ old('im_unit_mob') }}">
+                 @if ($errors->has('im_unit_mob'))
+                                    <span class="help-block">
+                                      <!--  <strong>{{ $errors->first('co_name') }}</strong>-->
+                                        <strong>Unit Phone Number is Required</strong>
+                                    </span>
+                                @endif   
                   </div>
                 </div>                  
 				</div>
@@ -175,22 +227,33 @@
                 
                 
                 <div class="col-md-3">
-                  <div class="form-group">
+                   <div class="form-group{{ $errors->has('im_unit_email') ? ' has-error' : '' }}">
                     <label for="im_unit_email" class="control-label">Email</label>
-                    <input class="form-control" id="im_unit_email" placeholder=""  name="im_unit_email" type="email">
-                  </div>
+                    <input class="form-control" id="im_unit_email" placeholder=""  name="im_unit_email" type="email" value="{{ old('im_unit_email') }}">
+                 @if ($errors->has('im_unit_email'))
+                                    <span class="help-block">
+                                      <!--  <strong>{{ $errors->first('co_name') }}</strong>-->
+                                        <strong>Unit Email ID is Required</strong>
+                                    </span>
+                                @endif 
+                   </div>
                 </div>
                 <div class="col-md-3">
-                  <div class="form-group">
+                   <div class="form-group{{ $errors->has('im_unit_web') ? ' has-error' : '' }}">
                     <label class="control-label" for="im_unit_web">Website</label>
-                    <input class="form-control" id="im_unit_web" placeholder="" name="im_unit_web" type="text">
-                     <span class="help-block">If any.</span>
+                    <input class="form-control" id="im_unit_web" placeholder="" name="im_unit_web" type="text" value="{{ old('im_unit_web') }}">
+                  @if ($errors->has('im_unit_web'))
+                                    <span class="help-block">
+                                      <!--  <strong>{{ $errors->first('co_name') }}</strong>-->
+                                        <strong>If Any.</strong>
+                                    </span>
+                                @endif 
                   </div>
                 </div>
                   
                   
                   <div class="col-md-3">
-                  <div class="form-group">
+                  <div class="form-group{{ $errors->has('im_unit_ssi') ? ' has-error' : '' }}">
                     <label class="control-label" for="im_unit_ssi">SSI / Non-SSI</label>
 					<div class="select-style">
                     <select class="form-control match-content" name="im_unit_ssi">
@@ -198,12 +261,18 @@
                       <option>SSI</option>
                       <option>Non SSI</option>
                     </select>
+                       @if ($errors->has('im_unit_ssi'))
+                                    <span class="help-block">
+                                      <!--  <strong>{{ $errors->first('co_name') }}</strong>-->
+                                        <strong>Unit SSI is Required</strong>
+                                    </span>
+                                @endif 
                   </div>
                 </div>
 				</div>
                   
                   <div class="col-md-3">
-                  <div class="form-group">
+                   <div class="form-group{{ $errors->has('im_unit_for') ? ' has-error' : '' }}">
                     <label class="control-label" for="im_unit_for">Whether the information memorandum for</label>
 					<div class="select-style">
                     <select class="form-control match-content" name="im_unit_for">
@@ -211,6 +280,12 @@
                       <option>New Unit</option>
                       <option>Existing Unit</option>
                     </select>
+                       @if ($errors->has('im_unit_for'))
+                                    <span class="help-block">
+                                      <!--  <strong>{{ $errors->first('co_name') }}</strong>-->
+                                        <strong>IM is for  is Required</strong>
+                                    </span>
+                                @endif                       
                   </div>
                 </div>
 				</div>
@@ -218,7 +293,7 @@
               </div>
                 <div class="row">
                 <div class="col-md-3">
-                  <div class="form-group">
+                  <div class="form-group{{ $errors->has('im_unit_firm') ? ' has-error' : '' }}">
                     <label for="im_unit_firm" class="control-label">Constitution of Firm</label></div></div>
                      <div class="col-md-9">
                   <div class="form-group">
@@ -227,16 +302,22 @@
                     <label class="radio-inline" >
                       <input type="radio"  value="Partnership" name="im_unit_firm" id="chkYes" onclick="PropDiv(); ShowHideDiv();" >Partnership</label>
                     <label class="radio-inline" >
-                        <input type="radio"  value="Pvt.Ltd" name="im_unit_firm" id="chkYes" onclick="PropDiv()">Pvt.Ltd</label>
+                        <input type="radio"  value="Pvt.Ltd" name="im_unit_firm" id="chkYes" onclick="PropDiv(); ShowHideDiv(); ">Pvt.Ltd</label>
                     <label class="radio-inline" >
-                      <input type="radio" name="im_unit_firm"  value="Co-Operative" id="chkYes" onclick="PropDiv()"> Co-Operative</label>
+                      <input type="radio" name="im_unit_firm"  value="Co-Operative" id="chkYes" onclick="PropDiv(); ShowHideDiv();"> Co-Operative</label>
                     <label class="radio-inline" >
-                      <input type="radio" name="im_unit_firm" id="chkYes" value="Others" onclick="PropDiv()" >Others</label>
+                      <input type="radio" name="im_unit_firm" id="chkYes" value="Others" onclick="PropDiv(); ShowHideDiv();" >Others</label>
+                    @if ($errors->has('im_unit_firm'))
+                                    <span class="help-block">
+                                      <!--  <strong>{{ $errors->first('co_name') }}</strong>-->
+                                        <strong>Constitution of  firm  is Required</strong>
+                                    </span>
+                                @endif          
                   </div>
                 </div>
                 </div>
                 
-                
+                <!--
                 <div class="row" id="dvprop" style="display: none">
                
                     
@@ -288,17 +369,18 @@
                 </div>
 				</div>
               </div>
+                -->
 			  
 			  <div class="row">
              
                   
-                <div class="col-md-12 col-sm-12" id="dvcost" style="display: none">
+                <div class="col-md-12 col-sm-12" id="dvcost">
                
                 <table class="table table-bordered table-hover" name="tab_logic" id="tab_logic">
                   <thead>
                     <tr>
                     
-		      <th>Name of Partners/Managing Director(s)</th>
+		      <th>Name of Proprietor/Partners/Managing Director(s)</th>
                       <th>Gender</th>
                       <th>Religion</th>
                       <th>Category</th>

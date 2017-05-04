@@ -32,7 +32,7 @@ class IM_RegController extends Controller
         return view("reg_3");
     }
     
-     public function mst_im_list()
+     public function RO_IM_list()
     {
            
         //$mst_im_reg = Mst_im_reg::all();
@@ -42,7 +42,7 @@ class IM_RegController extends Controller
               ->orderby('mst_im_regs.user_id')
                  
             ->get();
-         return view('admin.dashboard')->with(['mst_im_reg' => $mst_im_reg]);
+         return view('RO.RO_pend_IM')->with(['mst_im_reg' => $mst_im_reg]);
     }
 
     
@@ -163,10 +163,10 @@ $users1 = DB::table('mst_im_regs')
 if (count($users1)>0)
 { 
     $im_count=count($users1);
-    echo "$im_count";
+   // echo "$im_count";
    // echo " user";
     $im_no = $users1[$im_count-1]->im_no;
-    echo $im_no;
+   // echo $im_no;
 
 
 foreach($request['app_name'] as $index => $value) {

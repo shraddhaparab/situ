@@ -14,7 +14,7 @@
      <link rel="stylesheet" href="{{URL::asset('http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css')}}">
         <script type="text/javascript" src="{{URL::asset('assets/js/jquery.min.js')}}"></script>
         <script type="text/javascript" src="{{URL::asset('assets/js/jquery.js')}}"></script>
-         <script type="text/javascript" src="{{URL::asset('assets/js/custom_script.js')}}"></script>
+         
         <link rel="stylesheet" href="{{URL::asset('assets/css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{URL::asset('assets/css/custom2.css')}}"> 
         <link rel="stylesheet" href="{{URL::asset('assets/css/bootstrap.css')}}">

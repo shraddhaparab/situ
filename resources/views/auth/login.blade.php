@@ -137,10 +137,10 @@ Navi Mumbai </center></label>
 
                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" id="uname" class="col-md-4 control-label">PAN Number <span style="color: red">*</span></label>
+                            <label for="name" id="uname" class="col-md-4 control-label">PAN Number&nbsp; <span style="color: red">*</span></label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" onkeypress="UpperCase('name');" onkeyup="UpperCase('name');">
+                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" ;><!--onkeypress="UpperCase('name');" onkeyup="UpperCase('name');">-->
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
