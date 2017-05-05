@@ -36,6 +36,11 @@ class IN_PrnController extends Controller
         return view("IN_1");
     }
 
+    
+    public function action()
+    {
+        return view("action");
+    }
     // upload file function
     public function multiple_upload() {
     // getting all of the post data

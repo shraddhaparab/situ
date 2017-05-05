@@ -50,6 +50,7 @@ Route::get('/user/login', function () {
     return view('user.login');
 });
 
+
 Route::get('/form/in1/{im_no}', 'IN_PrnController@in1')->name('form.in1.im_no');
 
 //Route::get('/form/in2/{im_no}/{im_prems}', 'IN_PrnController@in2')->name('form.in2.im_no.im_prems');
@@ -141,7 +142,7 @@ Route::get('mainlogin', function () {
     return view('mainlogin');
 });
 
-
+Route::post('/action', 'IN_PrnController@action');
 
 Route::get('/RO/RO_dashboard', 'HomeController@RO_dashboard');
 

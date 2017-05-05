@@ -10,6 +10,60 @@
 		display: none;
 	}
   </style>
+  
+  <script type="text/javascript">
+    
+   function addRow(tableID) {
+
+			var table = document.getElementById(tableID);
+
+			var rowCount = table.rows.length;
+			var row = table.insertRow(rowCount);
+
+			var colCount = table.rows[1].cells.length;
+
+			for(var i=0; i<colCount; i++) {
+
+				var newcell	= row.insertCell(i);
+
+				newcell.innerHTML = table.rows[1].cells[i].innerHTML;
+				//alert(newcell.childNodes);
+				switch(newcell.childNodes[0].type) {
+					
+					case "select-one":
+							newcell.childNodes[0].selectedIndex = 0;
+							break;
+                                                        
+                                       case "text":
+							newcell.childNodes[0].value = "";
+							break;
+					case "text":
+							newcell.childNodes[0].value = "";
+							break;
+                                        case "text":
+							newcell.childNodes[0].value = "";
+							break;
+                                        case "text":
+							newcell.childNodes[0].value = "";
+							break;                
+				}
+			}
+		}
+
+		function deleteRow(x,tableID) {
+			try {
+			 var row = x.parentNode.parentNode;
+    document.getElementById(tableID).deleteRow(row.rowIndex);
+    console.log(row);
+			}catch(e) {
+				alert(e);
+			}
+		}
+       
+     
+</script>
+ 
+ 
   <title>SITU</title>
 </head>
   
@@ -27,7 +81,7 @@
               
 			Application for obtaining IN-Principal Approval for claim under In-situ Upgradation of plain Powerlooms for SSI Powerloom Sector</center></label>
 			
-		 </div>
+	 </div>
         </div>
       
           <hr>
@@ -36,7 +90,7 @@
     <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
   </div>
 
-  <form id="regiration_form" action="" method="post" enctype="multipart/form-data">
+  <form id="regiration_form" action="{{ url('action') }}" method="post" enctype="multipart/form-data">
        {{ csrf_field() }}
 
                  <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
@@ -417,20 +471,20 @@
                 <table class="table table-bordered table-hover" name="tab_logic" id="tab_logic">
                   <thead>
                     <tr>
-						<th>Sr.No</th>
+						
                       <th>Attachments</th>
                       <th>Sub/ Model</th>
                       <th>Quantity</th>
                       <th>Rate/ Unit</th>
                       <th>Total Cost</th>
                       <th style="width:10px">
-                        <span class="glyphicon glyphicon-plus addBtn" name="add_row" id="add_row"></span>
+                          <span class="glyphicon glyphicon-plus addBtn" name="add_row" id="add_row" onclick="addRow('tab_logic');"></span>
                       </th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr id="addr0">
-					<td>1</td>
+				
                       <td>
                           <div class="select">
                         <select  name="attach" id="attach" class="form-control">
@@ -442,19 +496,19 @@
                           </div>
                       </td>
                       <td>
-                        <input type="text" class="form-control" size="5" value=""  name="data[sub]" id="sub">
+                        <input type="text" class="form-control" size="5" value=""  name="sub[]" id="sub">
                       </td>
                       <td>
-                        <input type="text" class="form-control" size="5" value=""  name="data[qunt]" id="qunt">
+                        <input type="text" class="form-control" size="5" value=""  name="qunt[]" id="qunt">
                       </td>
                       <td>
-                        <input type="text" class="form-control" size="5" value=""  name="data[rate]" id="rate">
+                        <input type="text" class="form-control" size="5" value=""  name="rate[]" id="rate">
                       </td>
                       <td>
-                        <input type="text" class="form-control" size="5" value="" name="data[cost]" id="cost">
+                        <input type="text" class="form-control" size="5" value="" name="cost[]" id="cost">
                       </td>
                       <td>
-                        <span class="glyphicon glyphicon-minus addBtnRemove"  name="delete_row" id="delete_row"></span>
+                        <span class="glyphicon glyphicon-minus addBtnRemove"  name="delete_row" id="delete_row" onclick="deleteRow(this,'tab_logic')"></span>
                       </td>
                     </tr>
 					  
