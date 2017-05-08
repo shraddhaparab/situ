@@ -1,7 +1,60 @@
 <html>
+  <head>
+<script type="text/javascript">
     
+   function addRow(tableID) {
 
-    <head>
+      var table = document.getElementById(tableID);
+
+      var rowCount = table.rows.length;
+      var row = table.insertRow(rowCount);
+
+      var colCount = table.rows[1].cells.length;
+
+      for(var i=0; i<colCount; i++) {
+
+        var newcell = row.insertCell(i);
+
+        newcell.innerHTML = table.rows[1].cells[i].innerHTML;
+        //alert(newcell.childNodes);
+        switch(newcell.childNodes[0].type) {
+          
+          case "select-one":
+              newcell.childNodes[0].selectedIndex = 0;
+              break;
+          case "text":
+              newcell.childNodes[0].selectedIndex = 0;
+              break;
+
+
+         
+          case "text":
+              newcell.childNodes[0].value = "";
+              break;
+           case "text":
+              newcell.childNodes[0].value = "";
+              break;
+           case "text":
+              newcell.childNodes[0].value = "";
+              break;                
+        }
+      }
+    }
+
+    function deleteRow(x,tableID) {
+      try {
+       var row = x.parentNode.parentNode;
+    document.getElementById(tableID).deleteRow(row.rowIndex);
+    console.log(row);
+      }catch(e) {
+        alert(e);
+      }
+    }
+       
+     
+</script>
+
+
   </head>
   @extends('layouts.app')
   <body>
@@ -355,7 +408,7 @@
                       <th>Rate/ Unit</th>
                       <th>Total Cost</th>
                       <th style="width:10px">
-                        <span class="glyphicon glyphicon-plus addBtn" name="add_row" id="add_row"></span>
+                        <span class="glyphicon glyphicon-plus addBtn" name="add_row" id="add_row" onclick="addRow('tab_logic');"></span>
                       </th>
                     </tr>
                   </thead>
@@ -364,7 +417,7 @@
 					<td>1</td>
                       <td>
 					  <div class="select-style">
-                        <select  name="attach" id="attach" class="form-control match-content">
+                        <select  name="attach[]" id="attach" class="form-control match-content">
                           <option id="o1" selected="">Select</option>
                           <option>1</option>
                           <option>2</option>
@@ -373,37 +426,38 @@
 						</div>
                       </td>
                       <td>
-                        <input type="text" class="form-control" size="5" value=""  name="sub" id="sub">
+                        <input type="text" class="form-control" size="5" value=""  name="sub" id="sub[]">
                       </td>
                       <td>
-                        <input type="text" class="form-control" size="5" value=""  name="qunt" id="qunt">
+                        <input type="text" class="form-control" size="5" value=""  name="qunt" id="qunt[]">
                       </td>
                       <td>
-                        <input type="text" class="form-control" size="5" value=""  name="rate" id="rate">
+                        <input type="text" class="form-control" size="5" value=""  name="rate" id="rate[]">
                       </td>
                       <td>
-                        <input type="text" class="form-control" size="5" value="" name="cost" id="cost">
+                        <input type="text" class="form-control" size="5" value="" name="cost" id="cost[]">
                       </td>
                       <td>
-                        <span class="glyphicon glyphicon-minus addBtnRemove"  name="delete_row" id="delete_row"></span>
+                        <span class="glyphicon glyphicon-minus addBtnRemove"  name="delete_row" id="delete_row" onclick="deleteRow(this,'tab_logic')"></span>
                       </td>
                     </tr>
 					  <tr id='addr1'></tr>
 					  
-					    <tr>
-					  <td></td>
-					 
-					  <th class="text-right">Total</th>
-					  <td></td>
-					  <td></td>
-					  <td></td>
-					  <td></td>
-					   </tr>
+					   
                   </tbody>
                 </table>
               </div>
             </div>
-			
+			<div class="row">
+              <div class="col-md-1 col-md-offset-8 col-sm-1 col-sm-offset-8">
+               <label> Total </label>
+         
+     </div>
+    <div class="col-md-2 col-sm-2 col-md-offset-1">
+      <input type="text" class="form-control" size="5" value=""  name="data[toal]" id="total" readonly>
+     </div>
+      </div>
+      
 		  <hr></hr>
           <div class="row">
             <div class="col-md-6 col-md-offset-1">

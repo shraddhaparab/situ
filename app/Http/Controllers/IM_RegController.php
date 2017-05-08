@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Input;
+use Illuminate\Support\Facades\Redirect;
 //use Illuminate\Http\Request as Input;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -11,6 +12,8 @@ use App\Mst_im_reg;
 use App\User;
 use App\Trn_applicant_details;
 use Auth;
+use Illuminate\Support\Facades\View;
+
 use DateTime;
 
 class IM_RegController extends Controller
@@ -229,6 +232,7 @@ return view("reg_2");
        
         
     }
+
     
     public function reject(Request $request,$im_no)
     {
@@ -242,6 +246,34 @@ return view("reg_2");
                     ->where('im_no' ,$im_no)
                     ->update(['im_status' => 'reject']);
                     return redirect()->back();
+        
+    }
+    public function printdoc(array $mst_im_reg)
+    {
+       // return view("RO_IM_Print")->with(['mst_im_reg' => $mst_im_reg]);
+       
+        //print_r($mst_im_reg);
+        return view('RO.RO_IM_Print')->with(['mst_im_reg' => $mst_im_reg]);
+    }
+
+     public function print(Request $request,$im_no)
+    {
+         //$im_no = $request->input('im_no');
+         $mst_im = new Mst_im_reg;
+        $mst_im->im_no = Input::get('im_no');
+         //echo $im_no;
+     
+       
+       $mst_im_reg = DB::table('mst_im_regs')
+                    ->select('mst_im_regs.*')
+                    ->where('im_no',$im_no)
+                     ->get();
+         //print_r($mst_im_reg);
+         return View::make('RO.RO_IM_Print')->with('mst_im_reg', $mst_im_reg);
+                // return Redirect::action('IM_RegController@printdoc',$mst_im_reg);           
+                     //return redirect()->back();
+          //return Redirect()->route('RO_IM_Print', array('mst_im_reg' => $mst_im_reg));           
+         //return view('RO/RO_pend_IM/print/{im_no}')->with(['mst_im_reg' => $mst_im_reg]);
         
     }
 

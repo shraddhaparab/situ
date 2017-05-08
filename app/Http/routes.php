@@ -71,13 +71,14 @@ Route::get('IN_1', ['as' => 'IN_1', 'uses' => 'IN_PrnController@in']);
 
 Route::get('IN_2', ['as' => 'IN_2', 'uses' => 'IN_PrnController@in3']);
 
-Route::get('fomrat_II', ['as' => 'format_II', 'uses' => 'IN_PrnController@in_app']);
+Route::get('format_II', ['as' => 'format_II', 'uses' => 'IN_PrnController@in_app']);
  
 
+Route::get('RO/RO_pend_IM/update/{im_no}', 'IM_RegController@update')->name('RO.RO_pend_IM.update.im_no');
 
-Route::get('admin/dashboard/update/{im_no}', 'IM_RegController@update')->name('admin.dashboard.update.im_no');
+Route::get('RO/RO_pend_IM/reject/{im_no}', 'IM_RegController@reject')->name('RO.RO_pend_IM.reject.im_no');
 
-Route::get('admin/dashboard/reject/{im_no}', 'IM_RegController@reject')->name('admin.dashboard.reject.im_no');
+Route::get('RO/RO_pend_IM/print/{im_no}', 'IM_RegController@print')->name('RO.RO_pend_IM.print.im_no');
 
 //Route::resource('admin', 'IM_RegController');
 
@@ -92,6 +93,13 @@ Route::get('/home/reg_1', array('uses' => 'IM_RegController@index'));
 
 
 Route::post('/home/registered', array('uses' => 'IM_RegController@store'));
+
+//Route::get('RO_IM_Print',['as' => 'RO_IM_Print']);
+   Route::get('RO/RO_IM_Print', function () {
+    return view('RO.RO_IM_Print');
+});
+
+Route::get('RO_IM1_Print', array('uses' => 'IM_RegController@printdoc'));
 
 Route::get('home', function () {
     return view('home');
@@ -150,7 +158,7 @@ Route::get('/RO/RO_pend_IM', array('uses' => 'IM_RegController@RO_IM_list'));
 
 Route::get('/JIT/JIT_dashboard', 'HomeController@JIT_dashboard');
 
-Route::get('/JIT/JIT_Format_III', 'HomeController@JIT_app_form');
+Route::get('/JIT/JIT_Format_III','HomeController@JIT_app_form');
 
 Route::get('/OIC/OIC_dashboard', 'HomeController@OIC_dashboard');
 

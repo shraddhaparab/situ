@@ -1,27 +1,7 @@
-<html><head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="custom_script.js"></script>
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="custom2.css" rel="stylesheet" type="text/css">
-    <link href="bootstrap\css\bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="login\custom.css" rel="stylesheet" type="text/css"> -->
-    
-    
-    <link rel="stylesheet" href="{{URL::asset('assets/css/bootstrap.min.css')}}">
-     <link rel="stylesheet" href="{{URL::asset('http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css')}}">
-        <script type="text/javascript" src="{{URL::asset('assets/js/jquery.min.js')}}"></script>
-         <script type="text/javascript" src="{{URL::asset('assets/js/custom_script.js')}}"></script>
-        <link rel="stylesheet" href="{{URL::asset('assets/css/bootstrap.min.css')}}">
-        <link rel="stylesheet" href="{{URL::asset('assets/css/custom2.css')}}"> 
-        <link rel="stylesheet" href="{{URL::asset('assets/css/bootstrap.css')}}">
-       <!--    <link rel="stylesheet" href="{{URL::asset('assets/css/custom.css')}}">-->
-    
-    
-  </head><body>
+@extends('layouts.app')
+
+@section('content')
+<body>
     <div class="section">
       <div class="container">
         <div class="row">
@@ -162,6 +142,4 @@ subject to the conditions mentioned below :
         </div>
       </div>
   
-  
-
-</body></html>
+@endsection

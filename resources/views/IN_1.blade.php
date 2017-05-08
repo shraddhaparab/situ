@@ -33,10 +33,12 @@
 					case "select-one":
 							newcell.childNodes[0].selectedIndex = 0;
 							break;
-                                                        
-                                       case "text":
-							newcell.childNodes[0].value = "";
-							break;
+          case "select-one":
+              newcell.childNodes[0].selectedIndex = 0;
+              break;
+
+
+         
 					case "text":
 							newcell.childNodes[0].value = "";
 							break;
@@ -107,7 +109,7 @@
 		  
                   <div class="col-md-3">
                   <div class="form-group">
-                      <label class="control-label" for="im_no">IM Number</label>
+                      <label class="control-label" for="im_no">IM Number / Powerloom Permit No.</label>
                       <input type="text" class="form-control" id="im_no" placeholder="" name="im_no1" value="{{ $mst_im_regs->im_no}}" readonly>
                     
                  </div>
@@ -180,13 +182,13 @@
                   </div>
                 </div>
 				
-				<div class="col-md-9">
+				<div class="col-md-3">
                   <div class="form-group">
 				   <div class="fileupload fileupload-new" data-provides="fileupload">
                       <span class="btn btn-primary btn-file">
                        <!-- <span class="fileupload-new">Select file</span>
                         <span class="fileupload-exists">Change</span> -->
-                          <input type="file" name="file[]" multiple><br>
+                          <input type="file" name="file" multiple><br>
                       </span>
                       <span class="fileupload-preview"></span>
                     </div>
@@ -194,6 +196,33 @@
 				   </div>
                 </div>
 				  
+            <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="control-label" for="att_elc_bill">Please attach copy of PAN Number</label>
+                   
+                  </div>
+                </div>
+        
+        <div class="col-md-3">
+                  <div class="form-group">
+           <div class="fileupload fileupload-new" data-provides="fileupload">
+                      <span class="btn btn-primary btn-file">
+                       <!-- <span class="fileupload-new">Select file</span>
+                        <span class="fileupload-exists">Change</span> -->
+                          <input type="file" name="file1" multiple><br>
+                      </span>
+                      <span class="fileupload-preview"></span>
+                    </div>
+          
+           </div>
+                </div>
+          
+
+
+
+
+
+
 				
               </div>
               <div class="row">
@@ -275,11 +304,16 @@
                  @foreach($mst_im_reg as $mst_im_regs)
                  
                     <input type="hidden" name="im_no" value="{{ $mst_im_regs->im_no}}">
-                 
+                 <div class="row">
                  <div class="col-md-2">
                   <div class="form-group">
                     <label for="im_reg_auth" class="control-label">Registering Authority</label>
-                    <input type="text" class="form-control" id="im_reg_auth" placeholder=""  name="im_reg_auth" readonly>
+                     <select  name="reg_auth" id="reg_auth" class="form-control match-content">
+                          <option id="o1">Select</option>
+                        <option>Regional Office of textile commitioner Maharashtra</option>
+                          <option></option>
+                          <option></option>
+                        </select>
                     
                   </div>
                 </div>
@@ -324,6 +358,7 @@
 			<input type="text" class="form-control" id="own_cat" name="own_cat" placeholder=" " readonly>
                  
                   </div>
+                </div>
                 </div>
 				
                   
@@ -487,7 +522,7 @@
 				
                       <td>
                           <div class="select">
-                        <select  name="attach" id="attach" class="form-control">
+                        <select  name="attach[]" id="attach" class="form-control">
                           <option id="o1">Select</option>
                           <option>1</option>
                           <option>2</option>
@@ -495,8 +530,15 @@
                         </select>
                           </div>
                       </td>
-                      <td>
-                        <input type="text" class="form-control" size="5" value=""  name="sub[]" id="sub">
+                     <td>
+                          <div class="select">
+                        <select  name="sub[]" id="sub" class="form-control">
+                          <option id="o1">Select</option>
+                          <option>sub1</option>
+                          <option>sub2</option>
+                          <option>sub3</option>
+                        </select>
+                          </div>
                       </td>
                       <td>
                         <input type="text" class="form-control" size="5" value=""  name="qunt[]" id="qunt">
@@ -522,21 +564,28 @@
                <label> Total </label>
 			   
 		 </div>
-		<div class="col-md-2 col-sm-2">
+		<div class="col-md-2 col-sm-2 col-md-offset-1">
 		  <input type="text" class="form-control" size="5" value=""  name="data[toal]" id="total" readonly>
 		 </div>
 		  </div>
 			<br> 
               
           <div class="row">
-            <div class="col-md-6 col-md-offset-1">
+            <div class="col-md-4">
               <div class="form-group">
                 <label>Please attach a copy of Quotation/Proforma Invoice</label>
               </div>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-8">
               <div class="form-group">
-               <input type="file" name="file[]" multiple><br>
+            <div class="fileupload fileupload-new" data-provides="fileupload">
+                      <span class="btn btn-primary btn-file">
+                       <!-- <span class="fileupload-new">Select file</span>
+                        <span class="fileupload-exists">Change</span> -->
+                          <input type="file" name="file1" multiple><br>
+                      </span>
+                      <span class="fileupload-preview"></span>
+                    </div>
                       
         <div id="selectedFiles"></div>
               </div>

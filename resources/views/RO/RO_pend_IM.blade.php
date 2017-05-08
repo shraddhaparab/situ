@@ -19,6 +19,7 @@
             <th>Unit Address</th>
             <th>IM Number</th>
             <th>Status</th>
+            <th>Print</th>
      
 
         </tr>
@@ -46,14 +47,21 @@
      
      @elseif ($mst_im_regs->im_status =='pending')
      <td>
-     <a class="btn btn-info" href="{!! route('admin.dashboard.update.im_no', [$mst_im_regs->im_no]) !!}"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
-     <a class="btn btn-primary" href="{!! route('admin.dashboard.reject.im_no', [$mst_im_regs->im_no]) !!}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+     <a class="btn btn-info" href="{!! route('RO.RO_pend_IM.update.im_no', [$mst_im_regs->im_no]) !!}"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
+     <a class="btn btn-primary" href="{!! route('RO.RO_pend_IM.reject.im_no', [$mst_im_regs->im_no]) !!}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
      </td>
      @else
      <td>{{$mst_im_regs->im_status}}
        </td>
     
      @endif
+
+      @if($mst_im_regs->im_status =='active')
+     <td><a class="btn btn-info" href="{!! route('RO.RO_pend_IM.print.im_no', [$mst_im_regs->im_no]) !!}"> <span class="glyphicon glyphicon-print" aria-hidden="true"></span></a>
+
+     </td>
+     @endif
+
      </tr>
 
     @endforeach

@@ -109,7 +109,7 @@
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                    <label for="fname" class="control-label">Email</label>
+                    <label for="fname" class="control-label">Email ID</label>
                     <input class="form-control" id="femail" placeholder="" type="email" readonly>
                   </div>
                 </div>
@@ -134,77 +134,29 @@
                     <input class="form-control" id="fcpmb" placeholder="" type="text" readonly>
                   </div>
                 </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label class="control-label" for="fname">IM Number</label>
-                    <input class="form-control" id="fpan" placeholder="" type="text" readonly>
-                  </div>
-                </div>
+               
               </div>
-              <div class="row">
-                <div class="col-md-3">
-                  <div class="form-group">
-                   <label for="fname" class="control-label">Powerloom Permit Number</label>
-                    <input type="text" class="form-control" id="fcp" placeholder="" readonly>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label for="fname" class="control-label">Powerloom Permit date</label>
-                    <input type="text" class="form-control" id="fcp" readonly>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label for="fname" class="control-label">Registering Authority</label>
-                    <input type="text" class="form-control" id="fcp" placeholder="" readonly>
-                    
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label for="fname" class="control-label">COnstitution Of Firm</label>
-                    <input type="text" class="form-control" id="fcp" readonly>
-                   
-                  </div>
-                </div>
+              
+                
+             
+			  
+			  <div class="row">
+               
               </div>
 			  
 			  <div class="row">
-                <div class="col-md-3">
+			        <div class="col-md-3">
                   <div class="form-group">
-                   <label for="fname" class="control-label">Name of Proprietor</label>
-                    <input type="text" class="form-control" id="fcp" placeholder="" readonly>
-                  </div>
+                       <label for="im_bank_name" class="control-label">Bank Name</label>
+      <input type="text" class="form-control" id="im_bank_name" name="im_bank_name" readonly>
+                 
+                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                    <label for="fname" class="control-label">Name of Partners</label>
-                    <input type="text" class="form-control" id="fcp" placeholder="" readonly>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label for="fname" class="control-label">Gender</label>
-                    <input type="text" class="form-control" id="fcp" placeholder="" readonly>
-                    
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label for="fname" class="control-label">Religion</label>
-                    <input type="text" class="form-control" id="fcp" readonly>
-                   
-                  </div>
-                </div>
-              </div>
-			  
-			  <div class="row">
-			         <div class="col-md-3">
-                  <div class="form-group">
-                 <label for="fadd" class="control-label">Category</label>
-                    <input class="form-control" id="fbankadd2" placeholder="" type="text" readonly>
-                  </div>
+                 <label for="im_bank_branch" class="control-label">Branch Name</label>
+                <input type="text" class="form-control" id="im_bank_branch" name="im_bank_branch" readonly >
+                   </div>
                 </div>
 			  
                 <div class="col-md-3">
@@ -219,7 +171,8 @@
                       <label for="fadd" class="control-label">Pincode</label>
                     <input class="form-control" id="fbankadd2" placeholder="" type="text" readonly>
                   </div>
-                </div>
+                </div> </div>
+                  <div class="row">
                 <div class="col-md-3">
                   <div class="form-group">
                      <label class="control-label" for="fadd">Phone Number</label>
@@ -227,10 +180,10 @@
                   </div>
                 </div>
 
-              </div>
+             
 			  
 			  
-			   <div class="row">
+			 
                 <div class="col-md-3">
                   <div class="form-group">
                    <label class="control-label" for="fadd">IFSC Number</label>
