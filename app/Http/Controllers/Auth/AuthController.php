@@ -93,4 +93,34 @@ class AuthController extends Controller
             
         ]);
     }
+
+
+public function getLogin() {
+
+        return view('auth.login');
+    }
+
+    public function postLogin(Request $req)
+    {
+       //dd($req->name);
+       if (Auth::attempt(['name' => $req->name, 'password' => $req->password])) {
+            $user = Auth::user();
+            Session::put('role',$user->role);
+            dd($user);
+            return redirect()->intended('home');
+
+        }
+        else{
+            //dd('hi');
+            $req->session()->flash('status', 'User Credentials are not matched!');
+            return redirect('login');
+        }
+    }
+
+
+
+
+
+
+
 }

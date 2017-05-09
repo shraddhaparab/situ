@@ -34,7 +34,7 @@
      {{$mst_im_regs->im_unit_add}},{{$mst_im_regs->im_unit_dist}},{{$mst_im_regs->im_unit_state}},{{$mst_im_regs->im_unit_pin}}.<br></b>
      <br><br>
 <br>
-     <center> ACKNOWLEDGEMENT NO. {{$mst_im_regs->im_no}}/{{ date("M d Y", strtotime("-1 $mst_im_regs->created_at")) - date('Y', strtotime($mst_im_regs->created_at)) }} </center>
+     <center> ACKNOWLEDGEMENT NO. {{$mst_im_regs->im_no}}/{{ date('Y', strtotime('last year')) - date('Y', strtotime($mst_im_regs->created_at)) }} </center>
      <br><br>
      <div class="row">
           <div class="col-md-12">
