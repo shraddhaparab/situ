@@ -43,24 +43,63 @@ class AuthController extends Controller
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
+
+    public function nameexist() {
+
+    // Validation
+    $validator = Validator::make( Input::only('name'),
+
+        array(
+            'name'  =>'unique:users',
+            )
+        );
+
+    if ($validator->fails()) {
+
+        return Redirect::to('/login')
+        ->with('samerrors','This PAN Number is already exists.')
+        ->withErrors($validator)->withInput();
+
+    }else{
+
+        dd("HERE");
+
+        $user = new User;
+        $user->name = Input::get('name');
+        $user->save();
+         return redirect()->intended('home');
+       // return Redirect::to('/thank-you');
+
+    }
+
+}
+
+
+
+
+
+
     /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+
+
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
             'name' => 'required|unique:users|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'email' => 'required|email|max:255',
             'password' => 'required|min:6|confirmed',
             
             'co_name' => 'required|max:255',
             //'co_pan_no' => 'required|unique:users|regex:/([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}/',
             'co_add' => 'required',
             'co_cont_name' => 'required',
-            'co_cont_no' => 'required|unique:users|numeric',
+            'co_cont_no' => 'required|numeric',
             'co_adhar_no' =>'required|unique:users|regex:/[0-9]{12}/',
             
             

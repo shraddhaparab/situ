@@ -15,13 +15,13 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 255)->unique();//common field name for PAN No of user and username of admin.
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('password');
             
             $table->text('co_name');
             $table->text('co_add');
             $table->string('co_cont_name');
-            $table->string('co_cont_no')->unique();
+            $table->string('co_cont_no');
             $table->string('co_adhar_no')->unique();
             $table->string('role')->default('user');
             $table->rememberToken();

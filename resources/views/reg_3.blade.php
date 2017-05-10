@@ -1,23 +1,19 @@
 <html><head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-     <link rel="stylesheet" href="{{URL::asset('assets/css/bootstrap.min.css')}}">
-     <link rel="stylesheet" href="{{URL::asset('http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css')}}">
-        <script type="text/javascript" src="{{URL::asset('assets/js/jquery.min.js')}}"></script>
-         <script type="text/javascript" src="{{URL::asset('assets/js/custom_script_3.js')}}"></script>
-        <link rel="stylesheet" href="{{URL::asset('assets/css/bootstrap.min.css')}}">
-        <link rel="stylesheet" href="{{URL::asset('assets/css/custom2.css')}}"> 
-        <link rel="stylesheet" href="{{URL::asset('assets/css/bootstrap.css')}}">
-       <!--    <link rel="stylesheet" href="{{URL::asset('assets/css/custom.css')}}">
-    
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css" class="cust">
-    <link href="custom2.css" rel="stylesheet" type="text/css">
-    <link href="bootstrap\css\bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="login\custom.css" rel="stylesheet" type="text/css"> -->
+    <script type="text/javascript">
+      function generateim() {
+   
+    if (confirm("Do yoy want to confirm the changes ?") == true) {
+       window.location.href = "{ url('/home') }";
+    } else {
+       return false;
+    }
+   
+}
+
+
+
+
+    </script>
   </head> @extends('layouts.app')
   <body>
    @section('content')
@@ -45,7 +41,8 @@
 
            <label>Application  Form for obtaining IM Number</label>
           </div>
-          <form  method="POST" action="{{ url('/home') }}">
+          <form  method="post" action="{{ url('/home') }}">
+       <!--   <form method="post">-->
             <div class="modal-body">
             {{ csrf_field() }}
                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -266,12 +263,13 @@
                             <div class="col-md-6 col-md-offset-4">
                                  <a href="reg_2">←  Prev</a>
                                 
-                                <button type="submit" class="btn btn-primary">
+                             <a href="{{ url('/home') }}"><button type="submit" class="btn btn-primary" id="generate_im" onclick="return(generateim());">
                                     <i class="fa fa-btn fa-user"></i> Generate IM Number
-                                </button>
+                                </button></a>
+                                <p id="demo"></p>
                             </div>
                         </div>
-              
+            
             <!--<li>
                 <a href="reg_2">←  Prev</a>
               <input type="hidden" name="isEmpty" value="">

@@ -109,10 +109,11 @@ document.getElementById("status1").innerHTML = "You have entered a valid Adhar N
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" onkeyup="pan_validate(this.value);" onkeypress="UpperCase('name');" onkeyup="UpperCase('name');">
                                 <span id="status"></span>
-                                @if ($errors->has('name'))
+                                @if ( $errors->has('name'))
                                     <span class="help-block">
-                                      <!--     <strong>{{ $errors->first('name') }}</strong>-->
-                                        <strong>PAN Number is Required</strong>
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                       <!-- <strong>PAN Number is Required</strong>-->
+
                                     </span>
                                 @endif
                             </div>

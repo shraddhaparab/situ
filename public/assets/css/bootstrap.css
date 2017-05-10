@@ -6714,6 +6714,12 @@ button.close {
   display: none !important;
 }
 @media print {
+    .no-print
+    {
+        display: none !important;
+        height: 0;
+    }
+  
   .visible-print {
     display: block !important;
   }

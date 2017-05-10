@@ -1,4 +1,4 @@
-<<?php
+<?php
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -141,7 +141,6 @@ class CreateMasterTransTables extends Migration
              }); 
         
         
-        
     }
 
     /**
@@ -151,7 +150,7 @@ class CreateMasterTransTables extends Migration
      */
     public function down()
     {
-        Schema::drop('mst_im_regs');
+       Schema::drop('mst_im_regs');
         Schema::drop('trn_applicant_details');
         Schema::drop('trn_attachment_details');
         Schema::drop('mst_manufacturer');
@@ -163,7 +162,5 @@ class CreateMasterTransTables extends Migration
         Schema::drop('mst_sub_rule');
        
         
-          
     }
 }
-
