@@ -219,10 +219,6 @@
           
 
 
-
-
-
-
 				
               </div>
               <div class="row">
@@ -286,12 +282,9 @@
                  
                   <li> -->
                 <input type="button" name="next" class="next btn btn-info" value="Next" style="float:right;"/>
-                    <!--  <a href ="{!!route('im2.index',['im_no'=>$mst_im_regs->im_no,'im_prems'=>$mst_im_regs->im_prems])!!}">Next -> </a>
-                     -->
-              <!--     </li>
-                </ul>-->
+                 
             
-                @endforeach
+             <!--   @endforeach-->
                </fieldset>
            
           
@@ -301,7 +294,7 @@
       
      
               <fieldset>
-                 @foreach($mst_im_reg as $mst_im_regs)
+                <!-- @foreach($mst_im_reg as $mst_im_regs) -->
                  
                     <input type="hidden" name="im_no" value="{{ $mst_im_regs->im_no}}">
                  <div class="row">

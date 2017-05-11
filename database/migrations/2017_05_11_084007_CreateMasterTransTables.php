@@ -50,6 +50,7 @@ class CreateMasterTransTables extends Migration
          Schema::create('trn_applicant_details', function (Blueprint $table) {
             $table->increments('app_id');
             $table->string('im_no');
+            $table->integer('user_id');
             $table->string('app_name');
             $table->string('app_gen');
             $table->string('app_rel');
@@ -57,7 +58,7 @@ class CreateMasterTransTables extends Migration
             $table->timestamps();
         });
         
-         Schema::create('trn_attachments_details', function (Blueprint $table) {
+         Schema::create('trn_attachments_proforma_details', function (Blueprint $table) {
            
             $table->increments('inprinc_no');
             $table->string('im_no');
@@ -67,8 +68,34 @@ class CreateMasterTransTables extends Migration
             $table->integer('quant');
             $table->integer('rate_unit');
             $table->integer('total_cost');
+            $table->integer('total');
             $table->timestamps();
         });
+
+         Schema::create('trn_attachments_invoice_details', function (Blueprint $table) {
+           
+            $table->increments('inprinc_no');
+            $table->string('im_no');
+            $table->integer('user_id'); 
+            $table->string('attachment');
+            $table->string('sub_model');
+            $table->integer('quant');
+            $table->integer('rate_unit');
+            $table->integer('total_cost');
+            $table->integer('total');
+            $table->timestamps();
+        });
+
+        Schema::create('trn_file_upload', function (Blueprint $table) {
+           
+            $table->increments('inprinc_no');
+            $table->string('im_no');
+            $table->integer('user_id'); 
+            $table->string('file_name');
+            $table->string('file_path');
+            $table->timestamps();
+        });
+ 
         
         Schema::create('mst_manufacturer', function (Blueprint $table) {
             $table->increments('manf_id');
@@ -139,8 +166,6 @@ class CreateMasterTransTables extends Migration
             $table->integer('sub_cap_amt');
             $table->timestamps();
              }); 
-        
-        
     }
 
     /**
@@ -150,7 +175,7 @@ class CreateMasterTransTables extends Migration
      */
     public function down()
     {
-       Schema::drop('mst_im_regs');
+        Schema::drop('mst_im_regs');
         Schema::drop('trn_applicant_details');
         Schema::drop('trn_attachment_details');
         Schema::drop('mst_manufacturer');
@@ -160,7 +185,5 @@ class CreateMasterTransTables extends Migration
         Schema::drop('mst_upgrade_type');
         Schema::drop('trn_cats');
         Schema::drop('mst_sub_rule');
-       
-        
     }
 }

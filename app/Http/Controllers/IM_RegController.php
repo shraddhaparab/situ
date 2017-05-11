@@ -180,6 +180,7 @@ foreach($request['app_name'] as $index => $value) {
     $trn_applicant_details->app_cat = $request['app_cat'][$index];
     $trn_applicant_details->app_name = $request['app_name'][$index];
     $trn_applicant_details->im_no = $im_no;
+    $trn_applicant_details->user_id = $userId;
    $trn_applicant_details->save();
 }
 

@@ -25,7 +25,7 @@
             <th>Action</th>
 
         </tr>
-         @foreach($mst_im_reg as $mst_im_regs)
+                @foreach($mst_im_reg as $mst_im_regs) 
         <tr>
           
         <td>No.4(80)/IMBHI/{{ date('Y', strtotime($mst_im_regs->created_at)) }}/ROM/{{$mst_im_regs->im_no}}</td>
@@ -62,7 +62,7 @@
      @endif
      
     @endforeach
-
+    
     </table>
 
                     

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 use Input;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use App\Mst_im_reg;
 use App\User;
+use App\Trn_applicant_details;
+use App\trn_attachments_proforma_details;
 use Auth;
 
 class IN_PrnController extends Controller
@@ -16,6 +19,37 @@ class IN_PrnController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    public function in_applicant(Request $request,$im_no)
+    {
+
+        $trn_attach = new Trn_attachments_proforma_details;
+        $trn_attach->im_no = Input::get('im_no');
+        echo $im_no;
+        
+        $user = Auth::User();     
+        $userId = $user->id;
+
+
+foreach($request['attachment'] as $index => $value) {
+    $trn_attachments_proforma_details = new Trn_attachments_proforma_details;
+    
+    $trn_attachments_proforma_details->attachment = $request['attachment'][$index];
+    $trn_attachments_proforma_details->sub_model = $request['sub_model'][$index];
+    $trn_attachments_proforma_details->quant = $request['quant'][$index];
+    $trn_attachments_proforma_details->rate_unit = $request['rate_unit'][$index];
+    $total_cost =$trn_attachments_proforma_details->quant *  $trn_attachments_proforma_details->rate_unit;
+    $trn_attachments_proforma_details->total_cost = $request['total_cost'][$index];
+    $trn_attachments_proforma_details->total = $request['total'][$index];
+    $trn_attachments_proforma_details->im_no = $im_no;
+    $trn_attachments_proforma_details->user_id = $userId;
+    $trn_attachments_proforma_details->save();
+}
+return Redirect::to('home');
+
+       }
+
      public function in1(Request $request,$im_no)
     {
 
@@ -24,17 +58,32 @@ class IN_PrnController extends Controller
         //echo $im_no;
         
         $mst_im_reg = DB::table('mst_im_regs')
-             ->join('users', 'mst_im_regs.user_id', '=', 'users.id')
+             -> join('users', 'mst_im_regs.user_id', '=', 'users.id')
+           
              ->select('mst_im_regs.*', 'users.*')
-             ->where('im_no' ,$im_no)     
+             ->where('mst_im_regs.im_no' ,$im_no)     
             ->get();
          
-      return view('IN_1')->with(['mst_im_reg' => $mst_im_reg]);
+
+         $trn_app = new Trn_applicant_details;
+        $trn_app->im_no = Input::get('im_no');
+        //echo $im_no;
+        
+        $trn_applicant = DB::table('trn_applicant_details')
+            ->select('trn_applicant_details.*')
+            ->where('im_no' ,$im_no)     
+            ->get();
+
+
+
+return view('USER.InPrincipal_Number',compact('mst_im_reg','trn_applicant'));
+    // return view('USER.InPrincipal_Number')->with(['mst_im_reg' => $mst_im_reg]);
        }
     public function in()
     {
-        return view("IN_1");
+        return view("USER.InPrincipal_Number");
     }
+
 
     
     public function action()
@@ -68,40 +117,7 @@ class IN_PrnController extends Controller
     }
   }
     
- 
-    public function in2(Request $request,$im_no,$im_prems)
-    {
-        $mst_im1 = new Mst_im_reg;
-        $mst_im1->im_no = Input::get('im_no');
-        $mst_im1->im_prems = Input::get('im_prems');
-        echo $im_no;  
-        echo $im_prems;
-        
-        $mst_im_reg3 = DB::table('mst_im_regs')
-           ->join('users', 'mst_im_regs.user_id', '=', 'users.id')
-             ->where('im_no' ,$im_no)
-             ->update(['im_prems' => $im_prems]);  
-         
-        //return view("home");
-         
-            
-        
-        $mst_im_reg = DB::table('mst_im_regs')
-             ->join('users', 'mst_im_regs.user_id', '=', 'users.id')
-             ->select('mst_im_regs.*', 'users.*')
-             ->where('im_no' ,$im_no)     
-            ->get();
-         
-      return view('IN_2')->with(['mst_im_reg' => $mst_im_reg]); 
-       }
-
-    public function in3()
-    {
-        return view("IN_2");
-    }
-    
-    
-    
+   
     public function index(Request $request,$im_no)
     {
          $mst_im1 = new Mst_im_reg;
@@ -145,7 +161,7 @@ class IN_PrnController extends Controller
      */
     public function store(Request $request,$im_no)
     {
-       $this->validate($request, [
+     /*  $this->validate($request, [
     'im_bank_name' => 'required',
     'im_bank_branch' => 'required',
     'im__bank_add' => 'required',
@@ -177,9 +193,11 @@ class IN_PrnController extends Controller
          
       return view('IN_3')->with(['mst_im_reg2' => $mst_im_reg2]);
        
+     */  
        
-       
-       
+   
+
+
        
     }
 

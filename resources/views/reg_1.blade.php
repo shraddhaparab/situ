@@ -317,60 +317,7 @@
                 </div>
                 </div>
                 
-                <!--
-                <div class="row" id="dvprop" style="display: none">
-               
-                    
-                <div class="col-md-3" >
-                  <div class="form-group">
-                     <label for="app_name" class="control-label">Name of Proprietor</label>
-					 
-                    <input type="text" class="form-control" id="app_name" name="app_name[]" placeholder=" ">
                 
-                  </div>
-                </div>
-                
-                <div class="col-md-3">
-                  <div class="form-group">
-                      <label for="app_gen[]" class="control-label">Gender</label><br>
-                   <label class="radio-inline">
-                      <input type="radio" name="app_gen[]" value="Male">Male</label>
-                    <label class="radio-inline">
-                      <input type="radio" name="app_gen[]" value="Female">Female</label>
-                    <label class="radio-inline">
-                      <input type="radio" name="app_gen[]" value="Others">Others</label>
-                  </div>
-                </div>
-                  
-                   <div class="col-md-3">
-                  <div class="form-group">
-                  <label for="app_rel" class="control-label">Religion</label>
-		<div class="select-style">
-                    <select class="form-control match-content" id="app_rel" name="app_rel[]">
-                      <option selected="">Select</option>
-                      <option>Hindu</option>
-                    </select>
-                    
-                  </div>
-                </div>
-				</div>
-                    <div class="col-md-3">
-                  <div class="form-group">
-                    <label for="app_cat" class="control-label">Category</label>
-					<div class="select-style">
-                    <select class="form-control match-content"  name="app_cat[]">
-                      <option selected="">Select</option>
-                      <option>SC/ ST</option>
-                      <option>OBC</option>
-                      <option>OPEN</option>
-                    </select>
-                   
-                  </div>
-                </div>
-				</div>
-              </div>
-                -->
-			  
 			  <div class="row">
              
                   

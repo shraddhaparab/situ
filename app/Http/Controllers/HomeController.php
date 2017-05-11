@@ -67,7 +67,7 @@ class HomeController extends Controller
              ->select('im_no', 'im_status','created_at')
              ->where('user_id' ,$user->id)   
               ->orderby('user_id')
-              ->groupby('im_status')   
+              
             ->get();
          //echo $mst_im_reg;
          return view('home')->with(['mst_im_reg' => $mst_im_reg]);

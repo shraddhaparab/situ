@@ -11,6 +11,107 @@
 	}
   </style>
   <title>SITU</title>
+
+<script type="text/javascript">
+function calculate() {
+  
+    var myBox1 = document.getElementById('quant').value; 
+    var myBox2 = document.getElementById('rate_unit').value;
+    var result = document.getElementById('total_cost'); 
+    alert(result.value);
+     alert(myBox1.value);
+      alert(myBox2.value);
+    var myResult = myBox1 * myBox2;
+    result.value = myResult;
+     
+    
+  }
+function calculate_total(className, div){
+    var elements = document.getElementsByTagName("input");
+    var total = 0;
+    
+    for(var i = 0; i < elements.length; ++i){
+      if(elements[i].className == className){
+        total += parseInt(elements[i].value);
+      }
+    }
+    
+    document.getElementById(total).innerHTML = "Total: " + total;
+  }
+
+  function myFunction() {
+    alert("hii");
+  var texts = document.getElementsByClassName('total_cost');
+    var sum = 0;
+    var aa= 0.0;
+    for( var i = 0; i < texts.length; i ++ ) {
+        aa=parseFloat(texts[i].value);
+        if(aa=="NaN" || aa==null || aa=="")
+          {aa=parseFloat("0");}
+          sum = sum + aa;
+          alert(sum);
+    }
+    var result = document.getElementById('total'); 
+    
+    result.value = sum;
+
+   // document.getElementById("total").innerHTML = sum;
+}
+ 
+    
+   function addRow(tableID) {
+
+      var table = document.getElementById(tableID);
+
+      var rowCount = table.rows.length;
+      var row = table.insertRow(rowCount);
+
+      var colCount = table.rows[1].cells.length;
+
+      for(var i=0; i<colCount; i++) {
+
+        var newcell = row.insertCell(i);
+
+        newcell.innerHTML = table.rows[1].cells[i].innerHTML;
+        //alert(newcell.childNodes);
+        switch(newcell.childNodes[0].type) {
+          
+          case "select-one":
+              newcell.childNodes[0].selectedIndex = 0;
+              break;
+          case "select-one":
+              newcell.childNodes[0].selectedIndex = 0;
+              break;
+
+
+         
+          case "text":
+              newcell.childNodes[0].value = "";
+              break;
+                                        case "text":
+              newcell.childNodes[0].value = "";
+              break;
+                                        case "text":
+              newcell.childNodes[0].value = "";
+              break;                
+        }
+      }
+    }
+
+    function deleteRow(x,tableID) {
+      try {
+       var row = x.parentNode.parentNode;
+    document.getElementById(tableID).deleteRow(row.rowIndex);
+    console.log(row);
+      }catch(e) {
+        alert(e);
+      }
+    }
+       
+
+
+</script>
+
 </head>
   
   @extends('layouts.app')
@@ -35,8 +136,8 @@
      <div class="progress">
     <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
   </div>
-
-  <form id="regiration_form" action="" method="post" enctype="multipart/form-data">
+ @foreach($mst_im_reg as $mst_im_regs)
+  <form id="regiration_form" action="{{route('form.inprnc.im_no', [$mst_im_regs->im_no])}}" method="post" enctype="multipart/form-data">
        {{ csrf_field() }}
 
                  <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
@@ -45,7 +146,7 @@
         <div class="modal-content">
          <div class="modal-body">
                 <fieldset>
-                 @foreach($mst_im_reg as $mst_im_regs)
+                
      <input type="hidden" name="im_no" value="{{ $mst_im_regs->im_no}}">
          
    
@@ -181,6 +282,26 @@
                     <input class="form-control" id="co_cont_no" type="text" name="co_cont_no" value="{{ $mst_im_regs->co_cont_no}}" readonly>
                    </div>
                 </div>
+
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="im_reg_auth" class="control-label">Registering Authority</label>
+                     <select  name="data[reg_auth]" id="reg_auth" class="form-control match-content">
+                          <option id="o1">Select</option>
+                        <option>Regional Office of textile commitioner Maharashtra</option>
+                          <option></option>
+                          <option></option>
+                        </select>
+                    
+                  </div>
+                </div>
+                 
+                 
+                <div class="col-md-3">
+                  <div class="form-group">
+                     <label for="im_unit_firm" class="control-label">Constitution of Firm</label>
+                       <input class="form-control" id="im_unit_firm" placeholder="" name="im_unit_firm" type="text" value="{{ $mst_im_regs->im_unit_firm}}" readonly>
+                   </div></div>
                   <!--
                 <div class="col-md-3">
                   <div class="form-group">
@@ -203,10 +324,7 @@
                  
                   <li> -->
                 <input type="button" name="next" class="next btn btn-info" value="Next" style="float:right;"/>
-                    <!--  <a href ="{!!route('im2.index',['im_no'=>$mst_im_regs->im_no,'im_prems'=>$mst_im_regs->im_prems])!!}">Next -> </a>
-                     -->
-              <!--     </li>
-                </ul>-->
+                 
             
                 @endforeach
                </fieldset>
@@ -217,123 +335,61 @@
       <!--  2nd fieldset -->
       
      
-              <fieldset>
-                 @foreach($mst_im_reg as $mst_im_regs)
+             <fieldset>
+                <!-- @foreach($mst_im_reg as $mst_im_regs) -->
                  
                     <input type="hidden" name="im_no" value="{{ $mst_im_regs->im_no}}">
+               
                  
-                 <div class="col-md-2">
+                 
+                   @foreach($trn_applicant as $trn_applicants)
+                   <div class="row">
+                <div class="col-md-3">
                   <div class="form-group">
-                    <label for="im_reg_auth" class="control-label">Registering Authority</label>
-                    <input type="text" class="form-control" id="im_reg_auth" placeholder=""  name="im_reg_auth" readonly>
-                    
-                  </div>
-                </div>
-                 
-                 
-                <div class="col-md-2">
-                  <div class="form-group">
-                     <label for="im_unit_firm" class="control-label">Constitution of Firm</label>
-                       <input class="form-control" id="im_unit_firm" placeholder="" name="im_unit_firm" type="text" value="{{ $mst_im_regs->im_unit_firm}}" readonly>
-                   </div></div>
-                 
-                <div class="col-md-2">
-                  <div class="form-group">
-                        <label for="own_name" class="control-label">Name of Proprietor</label>
-					 
-                        <input type="text" class="form-control" id="own_name" name="own_name" placeholder=" " value="" readonly>
+                        <label for="own_name" class="control-label">Name of Proprietor/Partners/Managing Director(s)</label>
+           
+                        <input type="text" class="form-control" id="own_name" name="own_name" placeholder=" " value="{{ $trn_applicants->app_name}}" readonly>
                 
                   </div>
                 </div>
                 
-                <div class="col-md-2">
+                <div class="col-md-3">
                   <div class="form-group">
                      <label for="own_gen" class="control-label">Gender</label><br>
-                     <input type="text" class="form-control" id="own_gen" name="own_gen" placeholder=" " value="" readonly>
+                     <input type="text" class="form-control" id="own_gen" name="own_gen" placeholder=" " value="{{ $trn_applicants->app_gen}}" readonly>
                 
                     </div>
                 </div>
                   
-                   <div class="col-md-2">
+                   <div class="col-md-3">
                   <div class="form-group">
                   <label for="own_rel" class="control-label">Religion</label>
-			<input type="text" class="form-control" id="own_rel" name="own_rel" placeholder=" " readonly>
+      <input type="text" class="form-control" id="own_rel" name="own_rel" placeholder=" " 
+      value="{{ $trn_applicants->app_rel}}" readonly>
                 
                   </div>
                 </div>
-				
+        
             
                
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                   <div class="form-group">
                   <label for="own_cat" class="control-label">Category</label>
-			<input type="text" class="form-control" id="own_cat" name="own_cat" placeholder=" " readonly>
+      <input type="text" class="form-control" id="own_cat" name="own_cat" placeholder=" " 
+      value="{{ $trn_applicants->app_cat}}" readonly>
                  
                   </div>
                 </div>
-				
-                  
-                  <!--<div class="col-md-12 col-sm-12">
-               
-                <table class="table  table-hover" name="tab_logic" id="tab_logic">
-                  <thead>
-                    <tr>
-		      <th>Name of Partners/Managing Director(s)</th>
-                      <th>Gender</th>
-                      <th>Religion</th>
-                      <th>Category</th>
-                      <th style="width:10px">
-                        <span class="glyphicon glyphicon-plus addBtn" name="add_row" id="add_row"></span>
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr id="addr0">
-					<td> <input type="text" class="form-control" size="5" value=""  name="part" id="part"></td>
-                      <td>
-
-                        <select  name="gen" id="gen" class="form-control match-content">
-                          <option id="o1">Select</option>
-                          <option>Male</option>
-                          <option>Female</option>
-                          <option>Others</option>
-                        </select>
-                         
-                      </td>
-                      <td>
-                     
-                        <select  name="rel" id="rel" class="form-control match-content">
-                          <option id="o1">Select</option>
-                          <option>Hindu</option>
-                         </select>
-                         
-                      </td>
-                      <td>
-                     
-                        <select  name="cat" id="cat" class="form-control match-content">
-                          <option id="o1">Select</option>
-                          <option>SC/ST</option>
-                          <option>OBC</option>
-                          <option>OPEN</option>
-                        </select>
-                        
-                      </td>
-                    
-                      <td>
-                        <span class="glyphicon glyphicon-minus addBtnRemove"  name="delete_row" id="delete_row"></span>
-                      </td>
-                    </tr>
-					  <tr id='addr1'></tr>
-					    
-                  </tbody>
-                </table> 
-              </div> -->
+                
+                 </div>
+                  @endforeach
+                
                     <div class="row">
             
                  <div class="col-md-3">
                   <div class="form-group">
                        <label for="im_bank_name" class="control-label">Bank Name</label>
-			<input type="text" class="form-control" id="im_bank_name" name="data[im_bank_name]" placeholder="Enter Bank Name">
+      <input type="text" class="form-control" id="im_bank_name" name="data[im_bank_name]" placeholder="Enter Bank Name">
                  
                    </div>
                 </div>
@@ -417,23 +473,23 @@
                 <table class="table table-bordered table-hover" name="tab_logic" id="tab_logic">
                   <thead>
                     <tr>
-						<th>Sr.No</th>
+						
                       <th>Attachments</th>
                       <th>Sub/ Model</th>
                       <th>Quantity</th>
                       <th>Rate/ Unit</th>
                       <th>Total Cost</th>
                       <th style="width:10px">
-                        <span class="glyphicon glyphicon-plus addBtn" name="add_row" id="add_row"></span>
+                        <span class="glyphicon glyphicon-plus addBtn" name="add_row" id="add_row" onclick="addRow('tab_logic');"></span>
                       </th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr id="addr0">
-					<td>1</td>
+					
                       <td>
                           <div class="select">
-                        <select  name="attach" id="attach" class="form-control">
+                        <select  name="attachment[]" id="attach" class="form-control">
                           <option id="o1">Select</option>
                           <option>1</option>
                           <option>2</option>
@@ -442,19 +498,21 @@
                           </div>
                       </td>
                       <td>
-                        <input type="text" class="form-control" size="5" value=""  name="data[sub]" id="sub">
+                        <input type="text" class="form-control" size="5" value=""  name="sub_model[]" id="sub">
                       </td>
                       <td>
-                        <input type="text" class="form-control" size="5" value=""  name="data[qunt]" id="qunt">
+                        <input type="text" class="form-control" size="5" value=""  name="quant[]" id="quant" oninput="calculate()">
                       </td>
                       <td>
-                        <input type="text" class="form-control" size="5" value=""  name="data[rate]" id="rate">
+                        <input type="text" class="form-control" size="5" value=""  name="rate_unit[]" id="rate_unit" oninput="calculate()">
+                      </td>
+                     
+                   
+                      <td>
+                        <input type="text" class="form-control" size="5" value="" name="total_cost[]" id="total_cost" class='total_cost' onchange="myFunction();" readonly>
                       </td>
                       <td>
-                        <input type="text" class="form-control" size="5" value="" name="data[cost]" id="cost">
-                      </td>
-                      <td>
-                        <span class="glyphicon glyphicon-minus addBtnRemove"  name="delete_row" id="delete_row"></span>
+                        <span class="glyphicon glyphicon-minus addBtnRemove"  name="delete_row" id="delete_row" onclick="deleteRow(this,'tab_logic')"></span>
                       </td>
                     </tr>
 					  
@@ -469,7 +527,7 @@
 			   
 		 </div>
 		<div class="col-md-2 col-sm-2">
-		  <input type="text" class="form-control" size="5" value=""  name="data[toal]" id="total" readonly>
+		  <input type="text" class="form-control" size="5" value=""  name="total[]" id="total" >
 		 </div>
 		  </div>
 			<br> 
@@ -493,8 +551,8 @@
        
          <!-- <ul class="pager">
             <li>-->
-            
-             <input type="submit" name="submit" class="submit btn btn-success" value="Submit" style="float:right;" />
+             <a  href="{!! route('form.inprnc.im_no', [$mst_im_regs->im_no]) !!}">
+             <input type="submit" name="submit" class="submit btn btn-success" value="Submit" style="float:right;" /></a>
                <input type="button" name="previous" class="previous btn btn-default" value="Previous" style="float:right;" />
                <!-- <a href="IN_2">←  Prev</a>-->
               <input type="hidden" name="isEmpty" value="">

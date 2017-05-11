@@ -1,6 +1,6 @@
 <?php
 
-/*
+/* old routes file 
 |--------------------------------------------------------------------------
 | Application Routes
 |--------------------------------------------------------------------------
@@ -51,11 +51,9 @@ Route::get('/user/login', function () {
 });
 
 
-Route::get('/form/in1/{im_no}', 'IN_PrnController@in1')->name('form.in1.im_no');
+Route::get('/user/Inprincipal_Number/{im_no}', 'IN_PrnController@in1')->name('form.in1.im_no');
+Route::post('/user/Inprincipal_Number/inprnc/{im_no}', 'IN_PrnController@in_applicant')->name('form.inprnc.im_no');
 
-//Route::get('/form/in2/{im_no}/{im_prems}', 'IN_PrnController@in2')->name('form.in2.im_no.im_prems');
-//Route::get('/in2/{im_no}/{im_prems}', 'IN_PrnController@in2')->name('in2.im_no','in2.im_prems');
-Route::get('in2/{im_no}/{im_prems}',['as' => 'im2.index', 'uses' => 'IN_PrnController@in2']);
 
 Route::get('/form/sub/{im_no}', 'IN_PrnController@index')->name('form.sub.im_no');
 
@@ -64,14 +62,10 @@ Route::get('/form/sub/{im_no}', 'IN_PrnController@index')->name('form.sub.im_no'
 
 //Route::get('/home/form/IN_1', ['as' => 'form', 'uses' => 'IN_PrnController@in']);
 
-Route::get('IN_1', ['as' => 'IN_1', 'uses' => 'IN_PrnController@in']);
+Route::get('USER.InPrincipal_Number', ['as' => 'IN_1', 'uses' => 'IN_PrnController@in']);
 
-//Route::get('/home/IN_3', array('uses' => 'IN_PrnController@in3'));
-//Route::get('/form/IN_2', array('uses' => 'IN_PrnController@in2'));
 
-Route::get('IN_2', ['as' => 'IN_2', 'uses' => 'IN_PrnController@in3']);
-
-Route::get('fomrat_II', ['as' => 'format_II', 'uses' => 'IN_PrnController@in_app']);
+Route::get('format_II', ['as' => 'format_II', 'uses' => 'IN_PrnController@in_app']);
  
 
  Route::get('RO/RO_IM_Print', function () {
@@ -94,6 +88,9 @@ Route::get('/home/reg_1', array('uses' => 'IM_RegController@index'));
 
 
 Route::post('/home/registered', array('uses' => 'IM_RegController@store'));
+
+//Route::post('/home/in_prnc_reg', array('uses' => 'IN_PrnController@in_applicant'));
+
 
 Route::post('home', function () {
     return view('home');
